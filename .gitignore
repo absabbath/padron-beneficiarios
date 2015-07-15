@@ -1,0 +1,17 @@
+/bootstrap/compiled.php
+/vendor
+composer.phar
+composer.lock
+.env.*.php
+.env.php
+.DS_Store
+Thumbs.db
+
+*.sublime-project
+*.sublime-workspace
+.sass-cache
+/app/storage/logs/*
+/app/storage/meta/*
+/app/storage/views/*
+/app/storage/sessions/*
+!.gitkeep

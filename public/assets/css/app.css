@@ -1,0 +1,16 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+.container.login {
+    margin-top: 5em;
+}
+
+.login-header .page-header h1 {
+    text-align: center;
+}
+.alert {
+   width:95%; 
+     
+}
