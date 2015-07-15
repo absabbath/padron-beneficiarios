@@ -12,6 +12,7 @@ Route::post ('password/remind', 'RemindersController@postRemind' );
 Route::get  ('password/reset/{token}',  'RemindersController@getReset' );
 Route::post ('password/reset',  'RemindersController@postReset' );
 
+Route::get  ('prueba',  'UsuarioController@ver'   );
 
 /**
  * Rutas de la app
