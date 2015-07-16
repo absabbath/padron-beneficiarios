@@ -10,14 +10,41 @@ class UsuarioController extends BaseController {
 
     }
 
-    public function ver()
+    public function index()
     {
-    	$usuarios=User::all();
-    	//$usuarios="tepetongo";
-        return View::make('usuarios/lista')
-        	->with('usuarios',$usuarios);
-
-
+        return "index";
     }
+
+    public function create()
+    {
+        return "create";   
+    }
+
+    public function store()
+    {
+        
+    }
+
+    public function show($id)
+    {
+        return "show".$id;
+    }
+
+    public function edit($id)
+    {
+        return "edit".$id;
+    }
+
+    public function update($id)
+    {
+        
+    }
+
+    public function destroy($id)
+    {
+        
+    }
+
+
 
 }
