@@ -37,7 +37,7 @@ $env = $app->detectEnvironment( function()
      */
     $environments = array(
                         'local' => array('localhost', '*.dev', 
-'*.local','angelmas.localhost'),
+'*.local','angelmas.localhost','localhost.localdomain'),
                     );
 
     foreach ($environments as $environment => $domains)
