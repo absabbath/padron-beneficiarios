@@ -12,7 +12,8 @@ class UsuarioController extends BaseController {
 
     public function index()
     {
-        return "index";
+        $usuarios = User::all();
+        return View::make('usuarios/lista')->with('usuarios',$usuarios);
     }
 
     public function create()
