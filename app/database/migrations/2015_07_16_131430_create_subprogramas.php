@@ -12,7 +12,14 @@ class CreateSubprogramas extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('subprogramas', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('nombre_subprograma',128);
+			$table->integer('id_programas')->unsigned();
+			$table->timestamps();
+			$table->foreign('id_programas')->references('id')->on('programas')->onDelete('cascade');
+		});
 	}
 
 	/**
@@ -22,7 +29,8 @@ class CreateSubprogramas extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('subprogramas');
 	}
+	
 
 }
