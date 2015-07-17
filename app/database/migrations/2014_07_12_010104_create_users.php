@@ -23,8 +23,11 @@ class CreateUsers extends Migration {
 			$table->string('primer_apellido',250);
 			$table->string('segundo_apellido',250);
 			$table->integer('id_rol')->unsigned();
+			$table->integer('id_dependencia')->unsigned()->nullable();
 			$table->boolean('estatus')->default(true);
 			$table->timestamps();
+			$table->foreign('id_dependencia')->references('id')->on('dependencias')->onDelete('cascade');
+
 		});
 	}
 

@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder {
         $usuario->primer_apellido = 'root';
         $usuario->segundo_apellido = 'root';
 
-        $usuario->id_rol = 1; //1 siempre es administrador
+        $usuario->id_rol = 2; //2 siempre es administrador
         $usuario->estatus = 1; //1 siempre es activo
 
         $usuario->save();

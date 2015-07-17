@@ -20,9 +20,8 @@ class CreateDependencias extends Migration {
 			$table->string('nombre_director',128);
 			$table->string('primer_apellido',128);
 			$table->string('segundo_apellido',128);
-			$table->integer('id_usuario')->unsigned();
 			$table->timestamps();
-			$table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
+			
 		});
 	}
 
