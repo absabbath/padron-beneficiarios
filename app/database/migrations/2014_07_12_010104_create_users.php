@@ -27,6 +27,7 @@ class CreateUsers extends Migration {
 			$table->boolean('estatus')->default(true);
 			$table->timestamps();
 			$table->foreign('id_dependencia')->references('id')->on('dependencias')->onDelete('cascade');
+			$table->foreign('id_rol')->references('id')->on('roles')->onDelete('cascade');
 
 		});
 	}
