@@ -1,6 +1,6 @@
 <?php
 
-class UsuarioController extends BaseController {
+class DependenciaController extends BaseController {
 
     public function __construct() {
 
@@ -12,8 +12,8 @@ class UsuarioController extends BaseController {
 
     public function index()
     {
-        $usuarios = User::all();
-        return View::make('admin/usuarios/lista')->with('usuarios',$usuarios);
+        $dependencias = Dependencia::all();
+        return View::make('admin/dependencia/index')->with('dependencias',$dependencias);
     }
 
     public function create()
@@ -45,7 +45,5 @@ class UsuarioController extends BaseController {
     {
         
     }
-
-
 
 }

@@ -18,6 +18,7 @@ Route::post ('password/reset',  'RemindersController@postReset' );
  */
 Route::any  ('/',  'HomeController@showWelcome'   );
 Route::resource('admin/usuario','UsuarioController');
+Route::resource('admin/dependencia','DependenciaController');
 
 /**
  * Rutas de testeo
