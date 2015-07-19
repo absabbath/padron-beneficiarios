@@ -32,7 +32,7 @@ class Dependencia extends Eloquent {
     public function isValid($data)
     {
         $rules = array(
-            'nombre_dependencia'  => 'required',
+            'nombre_dependencia'  => 'required|string:value|min:3|max:5',
             'nombre_director' =>'required',
             'primer_apellido'    => 'required',
         );
