@@ -17,17 +17,20 @@ class CreateBeneficiarios extends Migration {
 			$table->increments('id');
 			$table->string('nombre_beneficiario',128);
 			$table->string('primer_apellido_beneficiario',128);
-			$table->string('segundo_apellido_beneficiario',128);
+			$table->string('segundo_apellido_beneficiario',128)->nullable();
+			$table->integer('edad')->nullable();
+			$table->string('ocupacion',128)->nullable();
 			$table->string('clave_electoral',128);
 			$table->string('secc_electoral',128);
-			$table->integer('num_int');
-			$table->integer('num_ext');
-			$table->string('colinia',128);
-			$table->integer('cp');
-			$table->string('tel_casa',128);
-			$table->string('tel_cel',128);
-			$table->string('email',128);
-			$table->string('comentario',128);
+			$table->string('num_int',128)->nullable();
+			$table->string('num_ext',128)->nullable();
+			$table->string('colonia',128);
+			$table->string('calle',128);
+			$table->integer('cp')->nullable();
+			$table->string('tel_casa',128)->nullable();
+			$table->string('tel_cel',128)->nullable();
+			$table->string('email',128)->nullable();
+			$table->string('comentario',128)->nullable();
 
 			$table->timestamps();
 			
