@@ -12,6 +12,7 @@ class BeneficiarioController extends BaseController {
 
     public function buscarBeneficiario($clave_elector)
     {
+        
     	$persona = Beneficiario::where('clave_electoral', $clave_elector)->get()->first();
     	
     	return View::make('apoyos/beneficiario1')

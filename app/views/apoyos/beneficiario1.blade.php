@@ -18,6 +18,7 @@
 	{{$persona->primer_apellido_beneficiario }}
 	{{$persona->segundo_apellido_beneficiario }}
 </h3>
+<br>
 <h4>
 	Domicilio:
 </h4>
@@ -29,6 +30,10 @@
 	Codigo Postal: {{$persona->cp}}
 </b>
 <br>
+<br>
+<h4>
+  Datos de contacto:
+</h4>
 
 {{ Form::model($persona, array('route' => array('beneficiario.update', $persona->id), 'method' => 'PUT'), array('role' => 'form')) }}
 
