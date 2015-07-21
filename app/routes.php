@@ -26,7 +26,8 @@ Route::post('upload', 'AdminController@upload');
 Route::post('sincroniza', 'AdminController@sincroniza');
 
 //Rutas de beneficiarios
-Route::get('buscar/{clave}/beneficiario', 'BeneficiarioController@buscarBeneficiario');
+Route::match(array('GET', 'POST'),'buscar/{clave}/beneficiario', 'BeneficiarioController@buscarBeneficiario');
+
 Route::put('beneficiario/{id}/update', array(
     'as'   => 'beneficiario.update',
     'uses' => 'BeneficiarioController@update'

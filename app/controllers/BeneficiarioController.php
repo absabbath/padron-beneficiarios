@@ -12,8 +12,15 @@ class BeneficiarioController extends BaseController {
 
     public function buscarBeneficiario($clave_elector)
     {
+        if ($clave_elector=='buscador') {
+            $clave_elector = Input::get('q');
+        }
         
     	$persona = Beneficiario::where('clave_electoral', $clave_elector)->get()->first();
+
+        if (is_null($persona)) {
+            return Redirect::back()->with('message_warning', 'No se encontro la persona buscada');;
+        }
     	
     	return View::make('apoyos/beneficiario1')
     			->with('persona', $persona);
@@ -27,7 +34,7 @@ class BeneficiarioController extends BaseController {
         $persona->email = Input::get('email');
         $persona->comentario = Input::get('comentario');
         $persona->save();
-        return Redirect::back()->with('message_info', 'Datos actualizados correctamente');;
+        return Redirect::back()->with('message_info', 'Datos actualizados correctamente');
         
 
     }
