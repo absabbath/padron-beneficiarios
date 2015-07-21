@@ -34,10 +34,10 @@ class Beneficiario extends Eloquent {
      * @return User
      */
     
-   /* public function apoyos()
+    public function apoyos()
     {
-        return $this->hasMany('User','id_usuario');
-    }*/
+        return $this->hasMany('Apoyo','id_beneficiarios');
+    }
     
 
     public function isValid($data)

@@ -17,13 +17,15 @@ class BeneficiarioController extends BaseController {
         }
         
     	$persona = Beneficiario::where('clave_electoral', $clave_elector)->get()->first();
+        $apoyos = $persona->apoyos()->get();
 
         if (is_null($persona)) {
             return Redirect::back()->with('message_warning', 'No se encontro la persona buscada');;
         }
     	
     	return View::make('apoyos/beneficiario1')
-    			->with('persona', $persona);
+    			->with('persona', $persona)
+                ->with('apoyos', $apoyos);
     }
 
     public function update($id)
