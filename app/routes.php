@@ -20,9 +20,17 @@ Route::any  ('/',  'HomeController@showWelcome'   );
 Route::resource('admin/usuario','UsuarioController');
 Route::resource('admin/dependencia','DependenciaController');
 
+//Rutas del admin
 Route::get('admin', 'AdminController@inicio');
 Route::post('upload', 'AdminController@upload');
 Route::post('sincroniza', 'AdminController@sincroniza');
+
+//Rutas de beneficiarios
+Route::get('buscar/{clave}/beneficiario', 'BeneficiarioController@buscarBeneficiario');
+Route::put('beneficiario/{id}/update', array(
+    'as'   => 'beneficiario.update',
+    'uses' => 'BeneficiarioController@update'
+    ));
 
 /**
  * Rutas de testeo
