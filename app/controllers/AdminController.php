@@ -10,21 +10,77 @@ class AdminController extends BaseController {
 
     }
 
+    /**
+     * inicio redirecciona a  vista principal de administrador
+     * con las lista de archivos disponibles a sincronizar
+     * @return [type] [description]
+     */
+    public function inicio()
+    {
+    	$lista = $this->getFiles(storage_path('files/'));
+    	return View::make('admin/index')->with('lista', $lista);
+    }
 
 
     /**
-     * panelAdmin Funcion para sincronizar datos del archivo excel a la BD
+     * upload en esta funcion se sube el archivo al servidor
+     * @return [type] [description]
+     */
+    public function upload()
+    {
+    	$nombre = "";
+    	if(Input::hasFile('archivo')) {
+    		$ruta = storage_path('files/');
+    		$nombre = Input::file('archivo')->getClientOriginalName(); ;
+          	Input::file('archivo')->move($ruta,$nombre);
+     	}
+
+
+
+     	return Redirect::back();
+
+    }
+
+
+    /**
+     * getFiles Obtiene los nombre de archivos en el servidor
+     * @param  string $path Ruta a buscar
+     * @return [type]       [description]
+     */
+    public function getFiles($path)		
+    {
+    	$lista = "";
+    	
+	    if(is_dir($path)) {
+	        if($dir = opendir($path)){
+	            while(($archivo = readdir($dir)) !== false){
+	                if($archivo != '.' && $archivo != '..' && $archivo != '.htaccess'){
+	                    //$lista .= '<li><a target="_blank" href="'.$path.'/'.$archivo.'">'.$archivo.'</a></li>';
+	                	$lista[$archivo.''] = $archivo;
+	                }
+	            }
+	            closedir($dir);
+	        }
+	    }
+
+	    return $lista;
+
+    }
+
+   
+    /**
+     * sincroniza Funcion para sincronizar datos del archivo excel a la BD
      * @return Redirect Redirecciona a la vista anterior con el mensaje de 
      *                               confirmacion de sincroniacion
      */
     
-    public function panelAdmin()
+    public function sincroniza()
     {
 
 		ini_set("memory_limit","2G"); //Variable para extender la memoria del cache
 		ini_set('max_execution_time', '0'); //Variable para quitar limite de timpo de ejecucion
 
-        $archivo = storage_path('files/')."cinco.csv"; //Nombre y ruta del archivo a sincronizar
+        $archivo = storage_path('files/').Input::get('subir'); //Nombre y ruta del archivo a sincronizar
 
 
         /**
@@ -38,22 +94,22 @@ class AdminController extends BaseController {
     		foreach ($results as $value) {
 
     			Beneficiario::create([
-		            'nombre_beneficiario'        => $value->nombre,
-		            'primer_apellido_beneficiario'     => $value->paterno,
-		            'segundo_apellido_beneficiario'      => $value->materno,
-		            'edad' => $value->edad,
-		            'ocupacion' => $value->ocupacion,
-		            'clave_electoral' => $value->clave_ele,
-		            'secc_electoral'  => $value->seccion,
-		            'num_int' => $value->num_int,
-		            'num_ext' => $value->num,
-		            'colonia' => $value->colonia,
-		            'calle' => $value->calle,
-		            'cp' => $value->cp,
-		            'tel_casa' => null,
-		            'tel_cel' => null,
-		            'email' => null,
-		            'comentario' => null,
+		            'nombre_beneficiario'            => $value->nombre,
+		            'primer_apellido_beneficiario'   => $value->paterno,
+		            'segundo_apellido_beneficiario'  => $value->materno,
+		            'edad'                           => $value->edad,
+		            'ocupacion'                      => $value->ocupacion,
+		            'clave_electoral'                => $value->clave_ele,
+		            'secc_electoral'                 => $value->seccion,
+		            'num_int'                        => $value->num_int,
+		            'num_ext'                        => $value->num,
+		            'colonia'                        => $value->colonia,
+		            'calle'                          => $value->calle,
+		            'cp'                             => $value->cp,
+		            'tel_casa'                       => null,
+		            'tel_cel'                        => null,
+		            'email'                          => null,
+		            'comentario'                     => null,
 	            ]);
 
     			//echo $i++."<br>";
@@ -64,7 +120,7 @@ class AdminController extends BaseController {
 
 		})->get();
 
-		return Redirect::back()
+		return Redirect::action('AdminController@inicio')
             	->with('message_success', 'Datos cargados correctamente');
 
     }

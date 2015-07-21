@@ -17,9 +17,12 @@ Route::post ('password/reset',  'RemindersController@postReset' );
  * Rutas de la app
  */
 Route::any  ('/',  'HomeController@showWelcome'   );
-Route::get('admin', 'AdminController@panelAdmin');
 Route::resource('admin/usuario','UsuarioController');
 Route::resource('admin/dependencia','DependenciaController');
+
+Route::get('admin', 'AdminController@inicio');
+Route::post('upload', 'AdminController@upload');
+Route::post('sincroniza', 'AdminController@sincroniza');
 
 /**
  * Rutas de testeo
