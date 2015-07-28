@@ -2,7 +2,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo"><b>Padrón</b></a>
+    <a href="index2.html" class="logo"><b>Padron</b></a>
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">

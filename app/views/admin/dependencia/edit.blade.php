@@ -41,9 +41,8 @@
 	
 		<br>
 
-
-         {{ Form::button('Registrar Dependencia', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
-
+		<center> {{ Form::button('Guardar Cambios', array('type' => 'submit', 'class' => 'btn btn-success')) }}</center>
+        
    		
 
 	{{ Form::close() }}
