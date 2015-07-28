@@ -40,4 +40,9 @@ class BeneficiarioController extends BaseController {
         
 
     }
+
+    public function asignarApoyo()
+    {
+        return Programa::all();
+    }
 }

@@ -85,6 +85,12 @@
     </div>
   </div>
   <div class="box-body">
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+    Nuevo
+  </button>
+
   <table class="table table-responsive table-condensed">
       <tr>
         <th>Monto</th>
@@ -105,6 +111,32 @@
 </div><!-- /.box -->
 </div>
 </div><!-- /.row -->
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Asignar apoyo</h4>
+      </div>
+      <div class="modal-body">
+        {{ Form::open(array('action' => 'BeneficiarioController@asignarApoyo', 'method' => 'POST'), array('role' => 'form','class'=>'form-horizontal row-fluid')) }}
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        {{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
+        {{Form::close()}}
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

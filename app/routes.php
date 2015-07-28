@@ -33,6 +33,10 @@ Route::put('beneficiario/{id}/update', array(
     'uses' => 'BeneficiarioController@update'
     ));
 
+
+Route::post('asignar/apoyo', 'BeneficiarioController@asignarApoyo');
+
+
 /**
  * Rutas de testeo
  */
