@@ -16,11 +16,16 @@ class CreateApoyos extends Migration {
 		{
 			$table->increments('id');
 			$table->float('monto');
-			$table->dateTime('fecha',128);
-			$table->enum('periodicidad', array('un solo pago','quincenal', 'mensual'.'bimestral,','semestral','anual','otro'));
+			$table->dateTime('fecha');
+			$table->string('concepto', 512);
+			$table->enum('periodicidad', array('Un solo pago','Quincenal', 'Mensual','Bimestral,','Semestral','Anual','Otro'));
+			$table->integer('id_tipo_apoyos')->unsigned();			
 			$table->integer('id_beneficiarios')->unsigned();
+			$table->integer('id_subprogramas')->unsigned();
 			$table->timestamps();
+			$table->foreign('id_tipo_apoyos')->references('id')->on('tipo_apoyos')->onDelete('cascade');
 			$table->foreign('id_beneficiarios')->references('id')->on('beneficiarios')->onDelete('cascade');
+			$table->foreign('id_subprogramas')->references('id')->on('subprogramas')->onDelete('cascade');
 
 			
 		});

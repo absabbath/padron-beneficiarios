@@ -22,7 +22,7 @@ class Programa extends Eloquent {
     
     public function dependencia()
     {
-        return belongsTo('Dependencia','id_dependencia');
+        return $this->belongsTo('Dependencia','id_dependencia');
     }
     
     public function subprogramas()

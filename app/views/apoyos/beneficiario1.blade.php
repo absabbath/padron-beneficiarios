@@ -110,10 +110,14 @@
   </div><!-- /.box-body -->
 </div><!-- /.box -->
 </div>
+
 </div><!-- /.row -->
 
+<?php 
+$apoyoInstancia = new Apoyo();
+$idDependencia = Auth::user()->dependencia()->get()->first()->id;
 
-
+ ?>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -124,14 +128,37 @@
         <h4 class="modal-title" id="myModalLabel">Asignar apoyo</h4>
       </div>
       <div class="modal-body">
+
         {{ Form::open(array('action' => 'BeneficiarioController@asignarApoyo', 'method' => 'POST'), array('role' => 'form','class'=>'form-horizontal row-fluid')) }}
 
+          {{Form::hidden('id_beneficiario',$persona->id)}}
+          
+           
+          {{ Form::label('programas', 'Programas de esta dependencia',array('class'=>'control-label')) }}
+          {{ Form::select('programas', $apoyoInstancia->getProgramas($idDependencia), null, ['class' => 'form-control']) }}
+
+          {{ Form::label('tipo', 'Tipo de apoyo',array('class'=>'control-label')) }}
+          {{ Form::select('tipo', $apoyoInstancia->getTipo(), null, ['class' => 'form-control']) }}
+
+          {{ Form::label('fecha', 'Fecha',array('class'=>'control-label')) }}
+          <input type="date" name="inicio" class="form-control" id="inicio" required max="<?php echo date('Y-m-d');?>" placeholder="YYYY/MM/DD">
+
+          {{ Form::label('monto', 'Monto',array('class'=>'control-label')) }}
+          {{ Form::text('monto', 0, array('placeholder' => 'Monto', 'class' => 'form-control')) }}
+          
+          {{ Form::label('periodicidad', 'Periodicidad',array('class'=>'control-label')) }}
+          {{ Form::select('periodicidad', array('Un solo pago' => 'Un solo pago', 'Quincenal' => 'Quincenal', 'Anual' => 'Anual', 'Mensual' => 'Mensual', 'Bimestral' => 'Bimestral', 'Semestral' => 'Semestral', 'Otro' => 'Otro'), null, ['class' => 'form-control']) }}
+
+          {{ Form::label('concepto', 'Descripcion del apoyo',array('class'=>'control-label')) }}
+          {{ Form::textarea('concepto','Descripcion',array('class' => 'form-control', 'rows'=>'3')) }}
 
       </div>
       <div class="modal-footer">
+
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         {{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
         {{Form::close()}}
+
       </div>
     </div>
   </div>

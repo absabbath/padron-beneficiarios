@@ -25,7 +25,12 @@ class Dependencia extends Eloquent {
     
     public function usuarios()
     {
-        return $this->hasMany('User','id_usuario');
+        return $this->hasMany('User','id_dependencia');
+    }
+
+    public function programas()
+    {
+        return $this->hasMany('Programa', 'id_dependencia');
     }
     
 
