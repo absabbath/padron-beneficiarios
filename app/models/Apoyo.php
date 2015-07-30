@@ -12,11 +12,6 @@ class Apoyo extends Eloquent {
     protected $table = 'apoyos';
 
 
-
-    /**
-     * Funciones para relacionar los diferentes modelos
-     */
-    
     /**
      * Tiene muchos apoyos
      * @return User
@@ -26,10 +21,6 @@ class Apoyo extends Eloquent {
     {
         return $this->belongsTo('Beneficiario','id_beneficiarios');
     }
-
-    /**
-     * Funciones accesibles en todo el sistema
-     */
     
 
     /**

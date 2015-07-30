@@ -57,14 +57,9 @@
         {{ Form::email('email', $persona->email, array('placeholder' => 'Correo electronico', 'class' => 'form-control')) }}
       
         {{ Form::label('comentario', 'Comentarios sobre persona',array('class'=>'control-label')) }}
-        {{ Form::textarea('comentario', $persona->comentario, array('placeholder' => 'Comentarios', 'class' => 'form-control')) }}
+        {{ Form::textarea('comentario', $persona->comentario, array('placeholder' => 'Comentarios', 'class' => 'form-control')) }} <br>
       
-        <br>
-
-
         {{ Form::button('Actualizar datos', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
-
-          
 
     {{ Form::close() }}    
   </div><!-- /.box-body -->
@@ -117,6 +112,7 @@
 
 <?php 
 $apoyoInstancia = new Apoyo();
+//Para saber los programas que debe mostrar de acuerdo a la dependencia logueada
 $idDependencia = Auth::user()->dependencia()->get()->first()->id;
 
  ?>
@@ -158,8 +154,8 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
       <div class="modal-footer">
 
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        {{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
-        {{Form::close()}}
+          {{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
+      {{Form::close()}}
 
       </div>
     </div>
