@@ -52,6 +52,10 @@ class BeneficiarioController extends BaseController {
 
     }
 
+    /**
+     * asignarApoyo Realiza el registro a la BD de cada apoyo
+     * @return Response     Redirecciona atras con mensaje de confirmacion
+     */
     public function asignarApoyo()
     {
         $apoyo = new Apoyo(array(
@@ -67,5 +71,37 @@ class BeneficiarioController extends BaseController {
 
         return Redirect::back()->with('message_danger', 'Nuevo apoyo asignado');
 
+    }
+
+    /**
+     * detalle Funcion que consulta el detalle de un apoyo, esta es realizada
+     * desde jquery
+     * @return array La informacion depurada de un apoyo
+     */
+    public function detalle()
+    {
+
+       
+        $id_apoyo = Input::get('apoyo');
+        $apoyo = Apoyo::find($id_apoyo);
+        $obj = new Apoyo();
+
+        $programa = SubPrograma::find($apoyo->id_subprogramas)->programa()->get()->first();
+        $dependencia = Dependencia::find($programa->id_dependencia);
+
+        $usuario =  $dependencia->usuarios()->first()->nombre." ".
+                    $dependencia->usuarios()->first()->primer_apellido." ".
+                    $dependencia->usuarios()->first()->segundo_apellido;
+
+        $todo = [
+        'Tipo de apoyo' => $obj->buscarTipo($apoyo->id_tipo_apoyos),
+        'Concepto' => $apoyo->concepto,
+        'Monto $' => $apoyo->monto,
+        'Fecha otorgado' => $apoyo->fecha,
+        'Periodicidad' => $apoyo->periodicidad,
+        'Otorgado por(Dependencia)' => $obj->getDependencia($apoyo->id_subprogramas),
+        'Funcionario que otorgó' => $usuario];
+
+        return $todo;
     }
 }

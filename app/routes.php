@@ -37,7 +37,7 @@ Route::put('beneficiario/{id}/update', array(
 Route::post('asignar/apoyo', 'BeneficiarioController@asignarApoyo');
 //Consulta los subpogramas con jquery
 Route::get('dropdown','DependenciaController@getSubPrograma');
-
+Route::get('detalle', 'BeneficiarioController@detalle');
 
 /**
  * Rutas de testeo

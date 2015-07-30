@@ -106,8 +106,8 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
       </tr>
       @foreach($apoyos as $apoyo)
           <tr>
-            <td>{{$apoyoInstancia->buscarTipo($apoyo->id_tipo_apoyos)}}</td>
-            <td>{{$apoyo->monto}}</td>
+            <td><a href="#" id="<?php echo $apoyo->id?>" class="push" data-toggle="modal" data-target="#myModal2">{{$apoyoInstancia->buscarTipo($apoyo->id_tipo_apoyos)}}</a></td>
+            <td>${{$apoyo->monto}}</td>
             <td>{{$apoyo->fecha}}</td>
             <td>{{$apoyo->periodicidad}}</td>
             <td>{{$apoyoInstancia->getDependencia($apoyo->id_subprogramas)}}</td>
@@ -168,11 +168,38 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
   </div>
 </div>
 
+<!-- Modal donde se muestra la consulta del detalle de cada apoyo -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detalle...</h4>
+      </div>
+
+      <div class="modal-body">
+          <div class="something">
+               Cargando...
+           </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 @stop
 
 @section('scripts','')
  <script type="text/javascript">
+
   $(document).ready(function(){
+    //Funcion para consultar selects dinamicos
     $('#programa').change(function(){
       $.get("{{ url('dropdown')}}",
       { programa: $(this).val() },
@@ -183,6 +210,28 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
         });
       });
     });
+
+    //Funcion para consultar el detalle de un apoyo
+    $('.push').click(function(){
+      var essay_id = $(this).attr('id');
+      $.get("{{ url('detalle')}}",
+      { apoyo: essay_id },
+      function(data) {
+        $('.something').empty();
+        var html="<div class = 'well'><h1>Detalle del apoyo</h1>";
+        
+        $.each(data, function(key, element) {
+      
+          html+=key+": ";
+          html+="<b>"+element+"</b><br>";
+             
+        });
+        html+="</div>";
+        $('.something').append(html);
+      });
+
+    });
+
   });
  </script>
 @stop
