@@ -12,7 +12,7 @@
 @stop
 
 <div class="row">
-
+<!-- Modulo donde se muestran los datos del beneficiario y  se agregan los faltantes-->
 <div class="col-md-6">
 <div class="box box-primary">
   <div class="box-header with-border">
@@ -76,6 +76,8 @@
 </div><!-- /.col -->
 
 
+<!-- Modulo donde se muestran los aopyos del beneficiario y botn para agregar otro -->
+
 <div class="col-md-6">
 <div class="box box-primary">
   <div class="box-header with-border">
@@ -119,7 +121,7 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
 
  ?>
 
-<!-- Modal -->
+<!-- Modal donde se muestra el formulario para asignar nuevo apoyo -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

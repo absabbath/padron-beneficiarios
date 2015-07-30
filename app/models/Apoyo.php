@@ -31,6 +31,11 @@ class Apoyo extends Eloquent {
      * Funciones accesibles en todo el sistema
      */
     
+
+    /**
+     * getTipo obtiene los tipos de apoyo y los envia en un arreglo para el formulario
+     * @return array ID y Tipo
+     */ 
     public function getTipo()
     {
         
@@ -44,6 +49,11 @@ class Apoyo extends Eloquent {
     }
 
 
+    /**
+     * getProgramas   Retornar los programas por cada dependecia
+     * @param  int $id_dependencia id de la dependencia que serequiere
+     * @return array                 id y nombre de programa
+     */
     public function getProgramas($id_dependencia)
     {
         $dependencia = Dependencia::find($id_dependencia);
@@ -58,6 +68,12 @@ class Apoyo extends Eloquent {
     }
     
 
+
+    /**
+     * isValid Aqui las reglas de validacion
+     * @param  array  $data los datos capturdos del formulario
+     * @return boolean       [description]
+     */
     public function isValid($data)
     {
         $rules = array(

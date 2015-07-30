@@ -10,6 +10,12 @@ class BeneficiarioController extends BaseController {
 
     }
 
+
+    /**
+     * buscarBeneficiario Buscar por clave de elector
+     * @param  string $clave_elector clave
+     * @return View                Muestra la vista del beneficiario
+     */
     public function buscarBeneficiario($clave_elector)
     {
         if ($clave_elector=='buscador') {
@@ -28,6 +34,11 @@ class BeneficiarioController extends BaseController {
                 ->with('apoyos', $apoyos);
     }
 
+    /**
+     * update actualiza los datos faltantes del beneficiario
+     * @param  int $id id del beneficiario
+     * @return Response    Mensaje de confirmacion 
+     */
     public function update($id)
     {
         $persona = Beneficiario::find($id);
