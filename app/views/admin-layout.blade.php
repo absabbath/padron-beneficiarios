@@ -6,7 +6,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{{ $page_title or "AdminLTE Dashboard" }}</title>
+    <title>{{ getenv('APP_NAME') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="{{ asset("/assets/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
@@ -20,7 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-    <link href="{{ asset("/assets/css/skin-green.min.css")}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("/assets/css/skin-red.min.css")}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset("/assets/css/app.css")}}" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -30,7 +30,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="skin-green sidebar-mini sidebar-collapse">
+<body class="skin-red sidebar-mini">
 <div class="wrapper">
 
     <!-- Header -->

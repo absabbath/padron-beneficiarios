@@ -34,6 +34,11 @@ class BeneficiarioController extends BaseController {
                 ->with('apoyos', $apoyos);
     }
 
+    public function buscador()
+    {
+        return View::make('apoyos/buscador');
+    }
+
     /**
      * update actualiza los datos faltantes del beneficiario
      * @param  int $id id del beneficiario

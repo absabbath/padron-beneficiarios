@@ -18,26 +18,35 @@
 
         <!-- search form (Optional) -->
         <form action="{{URL::action('BeneficiarioController@buscarBeneficiario', 'buscador')}}" method="PUT" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Clave elector..."/>
-<span class="input-group-btn">
-  <button type='submit' class="btn btn-flat"><i class="fa fa-search"></i></button>
-</span>
-            </div>
+          <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Clave elector..."/>
+              <span class="input-group-btn">
+                <button type='submit' class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+          </div>
         </form>
         <!-- /.search form -->
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">HEADER</li>
+            <li class="header">Acciones</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#" class="fa fa-home"><span>Inicio</span></a></li>
-            <li><a href="#" class="fa fa-user-plus"><span>Beneficiario</span></a></li>
+            <li class="active"><a href="{{ url('/')}}" class="fa fa-home"><span>Inicio</span></a></li>
+            <li><a href="{{ url('buscador')}}" class="fa fa-user-plus"> <span> Beneficiario</span></a></li>
             <li class="treeview">
-                <a href="#" class="fa-table"><span>Reportes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#" class="fa fa-table"> <span> Reportes</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
+                    <li><a href="#">Mis beneficiarios</a></li>
+                    <li><a href="#">Consulta personalizada</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#" class="fa fa-eye"> <span> Admin</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Alta de usuarios</a></li>
+                    <li><a href="#">Alta de dependencias</a></li>
+                     <li><a href="{{ url('admin')}}">Cargar padron</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->
