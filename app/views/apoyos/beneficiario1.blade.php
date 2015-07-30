@@ -1,6 +1,11 @@
 @extends('admin-layout')
 
+<?php 
+$apoyoInstancia = new Apoyo();
+//Para saber los programas que debe mostrar de acuerdo a la dependencia logueada
+$idDependencia = Auth::user()->dependencia()->get()->first()->id;
 
+?>
 
 
 @section('content')
@@ -93,17 +98,19 @@
 
   <table class="table table-responsive table-condensed">
       <tr>
+        <th>Tipo apoyo</th>
         <th>Monto</th>
         <th>Fecha</th>
         <th>Periodicidad</th>
-        <th>Departamento</th>
-        <th>Tipo apoyo</th>
+        <th>Otorgado por <br> (Dependencia)</th>
       </tr>
       @foreach($apoyos as $apoyo)
           <tr>
+            <td>{{$apoyoInstancia->buscarTipo($apoyo->id_tipo_apoyos)}}</td>
             <td>{{$apoyo->monto}}</td>
             <td>{{$apoyo->fecha}}</td>
             <td>{{$apoyo->periodicidad}}</td>
+            <td>{{$apoyoInstancia->getDependencia($apoyo->id_subprogramas)}}</td>
           </tr>  
       @endforeach
   </table>
@@ -112,13 +119,6 @@
 </div>
 
 </div><!-- /.row -->
-
-<?php 
-$apoyoInstancia = new Apoyo();
-//Para saber los programas que debe mostrar de acuerdo a la dependencia logueada
-$idDependencia = Auth::user()->dependencia()->get()->first()->id;
-
- ?>
 
 <!-- Modal donde se muestra el formulario para asignar nuevo apoyo -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

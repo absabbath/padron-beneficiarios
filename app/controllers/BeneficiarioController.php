@@ -54,17 +54,18 @@ class BeneficiarioController extends BaseController {
 
     public function asignarApoyo()
     {
-        $id=0;
-        
-        if($id == 0){
-            $combo [0] = "Selecciona un programa";
-            dd($combo);
-            return  $combo;
-        }
+        $apoyo = new Apoyo(array(
+        'monto' => Input::get('monto'),
+        'fecha' => Input::get('inicio'),
+        'concepto' => Input::get('concepto'),
+        'periodicidad' => Input::get('periodicidad'),
+        'id_tipo_apoyos' => Input::get('tipo'),
+        'id_beneficiarios' => Input::get('id_beneficiario'),
+        'id_subprogramas' => Input::get('subprogramas'),
+        ));
+        $apoyo->save();
 
-        $subprograma = Programa::find($id)->subprogramas;
+        return Redirect::back()->with('message_danger', 'Nuevo apoyo asignado');
 
-        
-        dd($subprograma->lists('nombre_subprograma', 'id'));
     }
 }

@@ -5,7 +5,11 @@ class Apoyo extends Eloquent {
     protected $fillable = array(
                 'monto',
                 'fecha',
-                'periodicidad'
+                'periodicidad',
+                'concepto',
+                'id_tipo_apoyos',
+                'id_beneficiarios',
+                'id_subprogramas'
                );
 
     public $errors;
@@ -40,6 +44,15 @@ class Apoyo extends Eloquent {
     }
 
 
+    public function buscarTipo($id)
+    {
+        $tipo = DB::table('tipo_apoyos')->where('id', $id)->pluck('nombre_tipo_apoyo');
+        return $tipo;
+
+        //$name = DB::table('users')->where('name', 'John')->pluck('name');  
+    }
+
+
     /**
      * getProgramas   Retornar los programas por cada dependecia
      * @param  int $id_dependencia id de la dependencia que serequiere
@@ -57,6 +70,14 @@ class Apoyo extends Eloquent {
         }
 
         return $combo;
+    }
+
+    public function getDependencia($id_subprograma)
+    {
+        $programa = SubPrograma::find($id_subprograma)->programa()->get()->first();
+        $dependencia = Dependencia::find($programa->id_dependencia);
+        return $dependencia->nombre_dependencia;
+
     }
     
 
