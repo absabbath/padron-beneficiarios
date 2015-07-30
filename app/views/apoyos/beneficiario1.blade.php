@@ -1,5 +1,8 @@
 @extends('admin-layout')
 
+
+
+
 @section('content')
 
 @section('ruta')
@@ -133,7 +136,10 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
           
            
           {{ Form::label('programas', 'Programas de esta dependencia',array('class'=>'control-label')) }}
-          {{ Form::select('programas', $apoyoInstancia->getProgramas($idDependencia), null, ['class' => 'form-control']) }}
+          {{ Form::select('programa', $apoyoInstancia->getProgramas($idDependencia), null, ['class' => 'form-control', 'id' => 'programa']) }}
+
+          {{ Form::label('subprogramas', 'Subprograma',array('class'=>'control-label')) }}
+          {{ Form::select('subprogramas', ['0'=>'Selecciona un programa primero'], null, ['class' => 'form-control','id' => 'subprograma']) }}
 
           {{ Form::label('tipo', 'Tipo de apoyo',array('class'=>'control-label')) }}
           {{ Form::select('tipo', $apoyoInstancia->getTipo(), null, ['class' => 'form-control']) }}
@@ -162,7 +168,21 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
   </div>
 </div>
 
+@stop
 
-
-
+@section('scripts','')
+ <script type="text/javascript">
+  $(document).ready(function(){
+    $('#programa').change(function(){
+      $.get("{{ url('dropdown')}}",
+      { programa: $(this).val() },
+      function(data) {
+        $('#subprograma').empty();
+        $.each(data, function(key, element) {
+          $('#subprograma').append("<option value='" + key + "'>" + element + "</option>");
+        });
+      });
+    });
+  });
+ </script>
 @stop

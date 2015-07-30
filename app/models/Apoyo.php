@@ -50,6 +50,7 @@ class Apoyo extends Eloquent {
         $dependencia = Dependencia::find($id_dependencia);
         $programas = $dependencia->programas()->get();
         $combo = [];
+        $combo [0] = "Selecciona un programa";
 
         foreach ($programas as $programa) {
             $combo[$programa->id] = $programa->nombre_programa;

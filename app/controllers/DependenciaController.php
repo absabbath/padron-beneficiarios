@@ -72,4 +72,17 @@ class DependenciaController extends BaseController {
         
     }
 
+    public function getSubPrograma()
+    {
+        $id = Input::get('programa');
+
+        if($id == 0){
+            $combo [0] = "Primero elije un programa";
+            return  $combo;
+        }
+        
+        $subprograma = Programa::find($id)->subprogramas;
+        return $subprograma->lists('nombre_subprograma', 'id');
+    }
+
 }

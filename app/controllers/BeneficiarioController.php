@@ -54,6 +54,17 @@ class BeneficiarioController extends BaseController {
 
     public function asignarApoyo()
     {
-        return Dependencia::find(1)->programas()->get();
+        $id=0;
+        
+        if($id == 0){
+            $combo [0] = "Selecciona un programa";
+            dd($combo);
+            return  $combo;
+        }
+
+        $subprograma = Programa::find($id)->subprogramas;
+
+        
+        dd($subprograma->lists('nombre_subprograma', 'id'));
     }
 }
