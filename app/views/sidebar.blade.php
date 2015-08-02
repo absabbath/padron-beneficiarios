@@ -44,9 +44,10 @@
             <li class="treeview">
                 <a href="#" class="fa fa-eye"> <span> Admin</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Alta de usuarios</a></li>
-                    <li><a href="#">Alta de dependencias</a></li>
-                     <li><a href="{{ url('admin')}}">Cargar padron</a></li>
+                    <li><a href="{{ url('admin/usuario')}}"> <i class="fa fa-user-plus"></i>  Gestión de usuarios</a></li>
+                    <li><a href="{{ url('admin/dependencia')}}"> <i class="fa fa-users"></i> Gestión de dependencias</a></li>
+                    <li><a href="{{ url('admin/reportes')}}"><i class="fa fa-server"></i> Consultas</a></li>
+                    <li><a href="{{ url('admin')}}"><i class="fa  fa-cloud-upload"></i> Cargar padron</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

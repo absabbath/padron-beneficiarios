@@ -46,12 +46,12 @@
         <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
         <div class="input-group">
           <div class="input-group-addon">Desde:</div>
-          <input type="date" class="form-control" id="exampleInputAmount" placeholder="Amount">
+          <input type="date" class="form-control" id="exampleInputAmount" placeholder="AAAA/MM/DD">
         </div>
 
         <div class="input-group">
           <div class="input-group-addon">Hasta: </div>
-          <input type="date" class="form-control" id="exampleInputAmount" placeholder="Amount">
+          <input type="date" class="form-control" id="exampleInputAmount" placeholder="AAAA/MM/DD">
            <span class="input-group-btn">
           <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
         </span>
