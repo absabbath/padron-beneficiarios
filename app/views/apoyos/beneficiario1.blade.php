@@ -13,8 +13,9 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
 @section('ruta')
 
  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-    <li class="active">Home</li>
+    <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Inicio</a></li>
+    <li><a href="{{url('buscador')}}"><i class="fa fa-search"></i> Buscar</a></li>
+    <li class="active"><i class="fa fa-user"></i> Beneficiario</li>
 </ol>
 
 @stop

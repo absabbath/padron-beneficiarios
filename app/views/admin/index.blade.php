@@ -5,8 +5,8 @@
 @section('ruta')
 
  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-    <li class="active">Admin</li>
+    <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Inicio</a></li>
+    <li class="active"><i class="fa fa-lock"></i>Admin</li>
 </ol>
 
 @stop
