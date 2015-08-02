@@ -125,4 +125,13 @@ class AdminController extends BaseController {
 
     }
 
+
+    public function busquedaAdmin()
+    {
+        $dependencias = Dependencia::all()->lists('nombre_dependencia', 'id');
+
+        return View::make('admin/reportes/filtros')
+                ->with('combo', $dependencias);
+    }
+
 }
