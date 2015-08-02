@@ -99,7 +99,7 @@ class BeneficiarioController extends BaseController {
         ));
         $apoyo->save();
 
-        return Redirect::back()->with('message_danger', 'Nuevo apoyo asignado');
+        return Redirect::back()->with('message_success', 'Nuevo apoyo asignado');
 
     }
 

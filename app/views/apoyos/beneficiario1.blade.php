@@ -35,6 +35,7 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
       {{$persona->nombre_beneficiario }}
       {{$persona->primer_apellido_beneficiario }}
       {{$persona->segundo_apellido_beneficiario }}
+      <small>{{$persona->clave_electoral}}</small>
     </h3>
     <br>
     <h4>
