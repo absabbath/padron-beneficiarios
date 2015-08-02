@@ -24,13 +24,13 @@ class CreateBeneficiarios extends Migration {
 			$table->string('secc_electoral',128);
 			$table->string('num_int',128)->nullable();
 			$table->string('num_ext',128)->nullable();
-			$table->string('colonia',128);
-			$table->string('calle',128);
+			$table->string('colonia',256);
+			$table->string('calle',256);
 			$table->integer('cp')->nullable();
 			$table->string('tel_casa',128)->nullable();
 			$table->string('tel_cel',128)->nullable();
 			$table->string('email',128)->nullable();
-			$table->string('comentario',128)->nullable();
+			$table->string('comentario',1024)->nullable();
 
 			$table->timestamps();
 			

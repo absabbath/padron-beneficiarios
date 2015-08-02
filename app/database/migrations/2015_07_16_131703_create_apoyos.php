@@ -17,7 +17,7 @@ class CreateApoyos extends Migration {
 			$table->increments('id');
 			$table->float('monto');
 			$table->dateTime('fecha');
-			$table->string('concepto', 512);
+			$table->string('concepto', 1024);
 			$table->enum('periodicidad', array('Un solo pago','Quincenal', 'Mensual','Bimestral,','Semestral','Anual','Otro'));
 			$table->integer('id_tipo_apoyos')->unsigned();			
 			$table->integer('id_beneficiarios')->unsigned();
