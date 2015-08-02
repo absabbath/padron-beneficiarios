@@ -21,8 +21,13 @@ class BeneficiarioController extends BaseController {
         if ($clave_elector=='buscador') {
             $clave_elector = Input::get('q');
         }
-        
+
+        $clave_elector = strtoupper($clave_elector);
+
     	$persona = Beneficiario::where('clave_electoral', $clave_elector)->get()->first();
+        if (is_null($persona)) {
+            return Redirect::back()->with('message_warning','No se encontro la persona');
+        }
         $apoyos = $persona->apoyos()->get();
 
         if (is_null($persona)) {
@@ -32,6 +37,26 @@ class BeneficiarioController extends BaseController {
     	return View::make('apoyos/beneficiario1')
     			->with('persona', $persona)
                 ->with('apoyos', $apoyos);
+    }
+
+    public function buscaSimilares()
+    {
+
+        $nombre = strtoupper(Input::get('nombre'));
+        $apellido = strtoupper(Input::get('primer_apellido'));
+       
+
+        $personas = Beneficiario::where('nombre_beneficiario',$nombre)
+                        ->where('primer_apellido_beneficiario', $apellido)->get();
+
+        if ($personas == "[]") {
+            return Redirect::back()->with('message_warning', 'No se encontro la persona buscada');;
+        }
+        
+
+        return View::make('apoyos/coincidencias')
+                ->with('personas', $personas);
+
     }
 
     public function buscador()
@@ -86,7 +111,6 @@ class BeneficiarioController extends BaseController {
     public function detalle()
     {
 
-       
         $id_apoyo = Input::get('apoyo');
         $apoyo = Apoyo::find($id_apoyo);
         $obj = new Apoyo();

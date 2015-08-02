@@ -26,7 +26,11 @@ Route::post('upload', 'AdminController@upload');
 Route::post('sincroniza', 'AdminController@sincroniza');
 
 //Rutas de beneficiarios
-Route::match(array('GET', 'POST'),'buscar/{clave}/beneficiario', 'BeneficiarioController@buscarBeneficiario');
+Route::match(array('GET', 'POST'),'buscar/{clave}/beneficiario',array(
+    'as'   => 'buscar.beneficiario',
+    'uses' => 'BeneficiarioController@buscarBeneficiario'
+    ) );
+
 Route::get('buscador', 'BeneficiarioController@buscador');
 Route::put('beneficiario/{id}/update', array(
     'as'   => 'beneficiario.update',
@@ -38,6 +42,7 @@ Route::post('asignar/apoyo', 'BeneficiarioController@asignarApoyo');
 //Consulta los subpogramas con jquery
 Route::get('dropdown','DependenciaController@getSubPrograma');
 Route::get('detalle', 'BeneficiarioController@detalle');
+Route::post('similares', 'BeneficiarioController@buscaSimilares');
 
 /**
  * Rutas de testeo
