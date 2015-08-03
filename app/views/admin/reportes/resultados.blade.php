@@ -20,6 +20,7 @@ $instancia = new Apoyo();
     <th>Clave electoral</th>
     <th>Nombre beneficiario</th>
     <th>Edad</th>
+    <th>Sexo</th>
     <th>Ocupacion</th>
     <th>Seccion electoral</th>
     <th>Domicilio</th>
@@ -31,13 +32,16 @@ $instancia = new Apoyo();
 @foreach ($apoyos as $apoyo) 
   
   <tr>
-    <td>{{$apoyo->beneficiario()->first()->clave_electoral}}</td>
+    <td>
+    {{ link_to_action('BeneficiarioController@buscarBeneficiario', $apoyo->beneficiario()->first()->clave_electoral, $parameters = array($apoyo->beneficiario()->first()->clave_electoral), array('class' => 'fa fa-info-circle ' )) }}
+    </td>
     <td>
     {{$apoyo->beneficiario()->first()->nombre_beneficiario}} 
     {{$apoyo->beneficiario()->first()->primer_apellido_beneficiario}} 
     {{$apoyo->beneficiario()->first()->segundo_apellido_beneficiario}} 
     </td>
     <td>{{$apoyo->beneficiario()->first()->edad}}</td>
+    <td>{{$apoyo->beneficiario()->first()->sexo}}</td>
     <td>{{$apoyo->beneficiario()->first()->ocupacion}}</td>
     <td>{{$apoyo->beneficiario()->first()->secc_electoral}}</td>
     <td>
