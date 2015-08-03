@@ -12,13 +12,15 @@ class UsuarioController extends BaseController {
 
     public function index()
     {
-        $usuarios = User::all();
-        return View::make('admin/usuarios/lista')->with('usuarios',$usuarios);
+        $users = User::all();
+        return View::make('admin/usuario/index')->with('users',$users);
     }
 
     public function create()
     {
-        return "create";   
+         
+         return View::make('admin/usuario/create'); 
+
     }
 
     public function store()
@@ -33,7 +35,7 @@ class UsuarioController extends BaseController {
 
     public function edit($id)
     {
-        return "edit".$id;
+         return View::make('admin/usuario/edit'); 
     }
 
     public function update($id)
