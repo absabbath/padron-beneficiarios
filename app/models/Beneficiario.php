@@ -8,6 +8,7 @@ class Beneficiario extends Eloquent {
                 'segundo_apellido_beneficiario',
                 'edad',
                 'ocupacion',
+                'sexo',
                 'clave_electoral',
                 'secc_electoral',
                 'num_int',

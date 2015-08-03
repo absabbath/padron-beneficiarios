@@ -98,6 +98,7 @@ class AdminController extends BaseController {
 		            'primer_apellido_beneficiario'   => $value->paterno,
 		            'segundo_apellido_beneficiario'  => $value->materno,
 		            'edad'                           => $value->edad,
+                    'sexo'                           => $value->sexo,
 		            'ocupacion'                      => $value->ocupacion,
 		            'clave_electoral'                => $value->clave_ele,
 		            'secc_electoral'                 => $value->seccion,
