@@ -2,7 +2,9 @@
 <header class="main-header">
 
     <!-- Logo -->
+
     <a href="{{ url('/')}}" class="logo"><b>Padrón</b></a>
+
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">

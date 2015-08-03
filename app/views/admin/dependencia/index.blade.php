@@ -13,16 +13,15 @@
 
 <br>
 
-	<a href="{{ URL::to('admin/dependencia/create') }}" class="btn btn-default btn-warning" type="button">Ir a: Nueva Dependnecia</a>
+	<center><a href="{{ URL::to('admin/dependencia/create') }}" class="btn btn-danger" type="button">Nueva Dependencia</a></center><br>
 
-
-<table>
+<table class="table table-condensed">
 <tr>
-	<td>NOMBRE DEPENDENCIA</td>
-	<td>NOMBRE DIRECTOR</td>
-	<td>PRIMER APELLIDO</td>
-	<td>SEGUNDO APELLIDO</td>
-	<td>EDITAR</td>
+	<td bgcolor='#DCDCDC' >NOMBRE DEPENDENCIA</td>
+	<td bgcolor='#DCDCDC'>NOMBRE DIRECTOR</td>
+	<td bgcolor='#DCDCDC'>PRIMER APELLIDO</td>
+	<td bgcolor='#DCDCDC'>SEGUNDO APELLIDO</td>
+	<td bgcolor='#DCDCDC'>EDITAR</td>
 </tr>
 @foreach($dependencias as $dependencia)
 <tr>
@@ -32,15 +31,12 @@
 	<td>{{$dependencia->primer_apellido}}</td>
 	<td>{{$dependencia->segundo_apellido}}</td>
 
-	<td><a class="btn btn-success" href="{{ route('admin.dependencia.edit', $dependencia->id) }}">
-              editar
-            </a></td>
+	<td><a class="btn btn-success" href="{{ route('admin.dependencia.edit', $dependencia->id) }}">Editar</a></td>
 	
 </tr>
 
 @endforeach
 
 </table>
-
 
 @stop

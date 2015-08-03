@@ -37,9 +37,10 @@ class Dependencia extends Eloquent {
     public function isValid($data)
     {
         $rules = array(
-            'nombre_dependencia'  => 'required|string:value|min:3|max:5',
-            'nombre_director' =>'required',
-            'primer_apellido'    => 'required',
+            'nombre_dependencia'  => 'required|min:3|max:30|regex:[^[a-zA-Zzáéíóúñ[:space:]]*$]',
+            'nombre_director' =>'required|min:3|max:30|regex:[^[a-zA-Zzáéíóúñ[:space:]]*$]',
+            'primer_apellido'    => 'required|min:3|max:30|regex:[^[A-Za-záéíóúñ]*$]',
+            'segundo_apellido' =>'min:3|max:30|regex:[^[A-Za-záéíóúñ]*$]',
         );
 
 

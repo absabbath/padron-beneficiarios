@@ -25,12 +25,12 @@
 
 
 
-{{ Form::model($dependencia, array('route' => array('admin.dependencia.update', $dependencia->id), 'method' => 'PUT'), array('role' => 'form')) }}
+{{ Form::model($users, array('route' => array('admin.usuario.update', $usuario->id), 'method' => 'PUT'), array('role' => 'form')) }}
 
-		{{ Form::label('nombre_dependencia', 'Dependencia',array('class'=>'control-label')) }}
-		{{ Form::text('nombre_dependencia', $dependencia->nombre_dependencia, array('placeholder' => 'Nombre Dependencia', 'class' => 'form-control')) }}
+		{{ Form::label('user', 'User',array('class'=>'control-label')) }}
+		{{ Form::text('user', $users->login, array('placeholder' => 'Nombre de Usuario', 'class' => 'form-control')) }}
 	
-		{{ Form::label('nombre_director', 'Director',array('class'=>'control-label')) }}
+		<!--{{ Form::label('nombre_director', 'Director',array('class'=>'control-label')) }}
 		{{ Form::text('nombre_director', $dependencia->nombre_directorl, array('placeholder' => 'Nombre Director', 'class' => 'form-control')) }}
 	
 		{{ Form::label('primer_apellido', 'Primer Apellido',array('class'=>'control-label')) }}
@@ -38,7 +38,7 @@
 	
 		{{ Form::label('segundo_apellido', 'Segundo Apellido',array('class'=>'control-label')) }}
 		{{ Form::text('segundo_apellido', $dependencia->segundo_apellido, array('placeholder' => 'Segundo Apellido', 'class' => 'form-control')) }}
-	
+	-->
 		<br>
 
 		<center> {{ Form::button('Guardar Cambios', array('type' => 'submit', 'class' => 'btn btn-success')) }}</center>

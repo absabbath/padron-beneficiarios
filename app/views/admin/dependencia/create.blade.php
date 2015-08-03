@@ -1,6 +1,6 @@
 @extends('admin-layout')
 
-@section('content')
+@section('content') 
 
 @section('ruta')
 
@@ -40,9 +40,8 @@
 	
 		<br>
 
-
-         {{ Form::button('Registrar Dependencia', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
-
+		<center> {{ Form::button('Guardar Dependencia', array('type' => 'submit', 'class' => 'btn btn-success')) }}</center>
+        
    		
 
 	{{ Form::close() }}
