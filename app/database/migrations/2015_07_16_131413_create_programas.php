@@ -15,7 +15,7 @@ class CreateProgramas extends Migration {
 		Schema::create('programas', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('nombre_programa',128);
+			$table->string('nombre_programa',512);
 			$table->integer('id_dependencia')->unsigned();
 			$table->timestamps();
 			$table->foreign('id_dependencia')->references('id')->on('dependencias')->onDelete('cascade');

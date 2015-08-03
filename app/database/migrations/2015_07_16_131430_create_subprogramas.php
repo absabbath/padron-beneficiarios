@@ -15,7 +15,7 @@ class CreateSubprogramas extends Migration {
 		Schema::create('subprogramas', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('nombre_subprograma',128);
+			$table->string('nombre_subprograma',512);
 			$table->integer('id_programas')->unsigned();
 			$table->timestamps();
 			$table->foreign('id_programas')->references('id')->on('programas')->onDelete('cascade');

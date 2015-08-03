@@ -16,10 +16,10 @@ class CreateDependencias extends Migration {
 		Schema::create('dependencias', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('nombre_dependencia',128);
-			$table->string('nombre_director',128);
-			$table->string('primer_apellido',128);
-			$table->string('segundo_apellido',128);
+			$table->string('nombre_dependencia',512);
+			$table->string('nombre_director',512);
+			$table->string('primer_apellido',512);
+			$table->string('segundo_apellido',512);
 			$table->timestamps();
 			
 		});
