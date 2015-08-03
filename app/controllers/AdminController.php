@@ -134,4 +134,43 @@ class AdminController extends BaseController {
                 ->with('combo', $dependencias);
     }
 
+    public function reporte($tipo)
+    {   
+        $aux = null;
+        $dependencias = Dependencia::all()->lists('nombre_dependencia', 'id');
+
+        switch ($tipo) {
+
+            case 'seccion':
+                $seccion = Input::get('seccion');
+                $apoyos = Beneficiario::where('secc_electoral', $seccion)->get();
+                
+                break;
+
+
+            case 'dependencia':
+                # code...
+                break;
+
+
+            case 'fecha':
+                $inicio = Input::get('inicio');
+                $fin = Input::get('fin');
+                $apoyos = Apoyo::where('fecha','>=',$inicio )->where('fecha', '<=', $fin)->get();
+                $aux = $apoyos;
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+        //return $aux;
+
+        return View::make('admin/reportes/resultados')
+                    ->with('apoyos',$aux)
+                    ->with('combo', $dependencias);
+        
+    }
+
 }

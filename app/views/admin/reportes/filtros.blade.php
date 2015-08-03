@@ -21,41 +21,45 @@
 <div class="box-body well">
 <div class="col-md-4">
   <h4>Por seccion</h4>
+  
+  {{ Form::open(array('route' => array('admin.reporte.beneficiario', 'seccion'), 'method' => 'POST', 'class'=>'form-inline')) }}
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Introduzca la seccion electoral">
+      <input type="text" class="form-control" name="seccion" placeholder="Introduzca la seccion electoral">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
       </span>
     </div><!-- /input-group -->
+  {{Form::close()}}
   </div><!-- /.col-lg-6 -->
 
   <div class="col-md-4">
   <h4>Por dependencia</h4>
+  {{ Form::open(array('route' => array('admin.reporte.beneficiario', 'dependencia'), 'method' => 'POST', 'class'=>'form-inline')) }}
     <div class="input-group">
-      {{ Form::select('tipo', $combo, null, ['class' => 'form-control']) }}
-
+      {{ Form::select('dependencia', $combo, null, ['class' => 'form-control']) }}
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
       </span>
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
-
+  {{Form::close()}}
   <div class="col-md-4">
     <h4>Por fecha</h4>
+    {{ Form::open(array('route' => array('admin.reporte.beneficiario', 'fecha'), 'method' => 'POST', 'class'=>'form-inline')) }}
     <form class="form-inline">
       <div class="form-group">
-        <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
         <div class="input-group">
           <div class="input-group-addon">Desde:</div>
-          <input type="date" class="form-control" id="exampleInputAmount" placeholder="AAAA/MM/DD">
+          <input type="date" class="form-control" id="exampleInputAmount" name="inicio" placeholder="AAAA/MM/DD">
         </div>
 
         <div class="input-group">
           <div class="input-group-addon">Hasta: </div>
-          <input type="date" class="form-control" id="exampleInputAmount" placeholder="AAAA/MM/DD">
+          <input type="date" class="form-control" id="exampleInputAmount" name="fin" placeholder="AAAA/MM/DD">
            <span class="input-group-btn">
-          <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+          <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
         </span>
+    {{Form::close()}}
         </div>
        
       </div>
