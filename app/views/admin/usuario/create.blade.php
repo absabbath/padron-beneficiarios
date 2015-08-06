@@ -27,28 +27,29 @@
 
 <div class="col-md-4">
 
-{{ Form::model($usuario, array('route' => array('admin.usuario.update', $usuario->id), 'method' => 'PUT'), array('role' => 'form')) }}
+{{ Form::open(array('action' => 'UsuarioController@store', 'method' => 'POST'), array('role' => 'form','class'=>'form-horizontal row-fluid')) }}
+              
 
 		{{ Form::label('login', 'Nombre de usuario', array('class'=>'control-label')) }}
-		{{ Form::text('login', $usuario->login, array('placeholder' => 'Usuario', 'class' => 'form-control')) }}
+		{{ Form::text('login', null, array('placeholder' => 'Usuario', 'class' => 'form-control')) }}
 
         {{ Form::label('email', 'Correo electronico',array('class'=>'control-label')) }}
-        {{ Form::text('email', $usuario->email, array('placeholder' => 'Correo electronico', 'class' => 'form-control')) }}
+        {{ Form::text('email', null, array('placeholder' => 'Correo electronico', 'class' => 'form-control')) }}
 
         {{ Form::label('nombre', 'Nombre',array('class'=>'control-label')) }}
-        {{ Form::text('nombre', $usuario->nombre, array('placeholder' => 'Nombre del usuario', 'class' => 'form-control')) }}
+        {{ Form::text('nombre', null, array('placeholder' => 'Nombre del usuario', 'class' => 'form-control')) }}
 
         {{ Form::label('primer_apellido', 'Primer apellido',array('class'=>'control-label')) }}
-        {{ Form::text('primer_apellido', $usuario->primer_apellido, array('placeholder' => 'Primer apellido', 'class' => 'form-control')) }}
+        {{ Form::text('primer_apellido', null, array('placeholder' => 'Primer apellido', 'class' => 'form-control')) }}
 
         {{ Form::label('segundo_apellido', 'Segundo apellido',array('class'=>'control-label')) }}
-        {{ Form::text('segundo_apellido', $usuario->segundo_apellido, array('placeholder' => 'Segundo Apellido', 'class' => 'form-control')) }}
+        {{ Form::text('segundo_apellido', null, array('placeholder' => 'Segundo Apellido', 'class' => 'form-control')) }}
         
         {{ Form::label('id_rol', 'Perfil de usuario',array('class'=>'control-label')) }}
-        {{ Form::select('id_rol', $roles, $usuario->id_rol, ['class' => 'form-control']) }}
+        {{ Form::select('id_rol', $roles, null, ['class' => 'form-control']) }}
 
         {{ Form::label('id_dependencia', 'Dependencia a la que pertenece',array('class'=>'control-label')) }}
-        {{ Form::select('id_dependencia', $dependencias, $usuario->id_dependencia, ['class' => 'form-control']) }}
+        {{ Form::select('id_dependencia', $dependencias, null, ['class' => 'form-control']) }}
 	
 		<br>
 

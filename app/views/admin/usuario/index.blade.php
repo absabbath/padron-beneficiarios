@@ -13,7 +13,7 @@
 
 <br>
 
-	<center><a href="{{ URL::to('admin.usuario.create') }}" class="btn btn-danger" type="button">Nuevo Usuario</a></center><br>
+	<center><a href="{{ URL::to('admin/usuario/create') }}" class="btn btn-danger" type="button">Nuevo Usuario</a></center><br>
 
 <table class="table table-condensed">
 <tr>
@@ -24,20 +24,26 @@
 	<td bgcolor='#DCDCDC' >SEGUNDO APELLIDO</td>
 	<td bgcolor='#DCDCDC' >ROL</td>
 	<td bgcolor='#DCDCDC' >DEPENDENCIA</td>
-	<td bgcolor='#DCDCDC'>EDITAR</td>
+	
 </tr>
 @foreach($users as $usuario)
 <tr>
 
-	<td>{{$usuario->login}}</td>
+	<td><a href="{{ route('admin.usuario.edit', $usuario->id) }}">{{$usuario->login}}</a></td>
 	<td>{{$usuario->email}}</td>
 	<td>{{$usuario->nombre}}</td>
 	<td>{{$usuario->primer_apellido}}</td>
 	<td>{{$usuario->segundo_apellido}}</td>
 	<td>{{$usuario->rol()->first()->name}}</td> 
-	<td>{{$usuario->rol()->first()->name}}</td>
-	
-	<td><a class="btn btn-success" href="{{ route('admin.usuario.edit', $usuario->id) }}">Editar</a></td>
+	@if($usuario->dependencia()->first() != null)
+		<td>
+			{{$usuario->dependencia()->first()->nombre_dependencia}}
+		</td>
+	@else
+		<td>
+			Sin usuario asignado
+		</td>
+	@endif
 	
 </tr>
 
