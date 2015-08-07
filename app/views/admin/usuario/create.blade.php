@@ -48,7 +48,7 @@
         {{ Form::label('id_rol', 'Perfil de usuario',array('class'=>'control-label')) }}
         {{ Form::select('id_rol', $roles, null, ['class' => 'form-control']) }}
 
-        {{ Form::label('id_dependencia', 'Dependencia a la que pertenece',array('class'=>'control-label')) }}
+        {{ Form::label('id_dependencia', 'Dependencia a la que pertenece',array('class'=>'control-label')) }}<small> <a href="{{url('admin/dependencia/create')}}">Crear dependencia</a> </small>
         {{ Form::select('id_dependencia', $dependencias, null, ['class' => 'form-control']) }}
 	
 		<br>
