@@ -5,8 +5,8 @@
 @section('ruta')
 
  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-    <li class="active">Home</li>
+    <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+    <li class="active">Crear nueva</li>
 </ol>
 
 @stop
@@ -23,6 +23,8 @@
         </div>
 @endif
 
+<div class="col-md-4"></div>
+<div class="col-md-4">
 {{ Form::open(array('action' => 'DependenciaController@store', 'method' => 'POST'), array('role' => 'form','class'=>'form-horizontal row-fluid')) }}
               
 
@@ -42,9 +44,7 @@
 
 		<center> {{ Form::button('Guardar Dependencia', array('type' => 'submit', 'class' => 'btn btn-success')) }}</center>
         
-   		
-
 	{{ Form::close() }}
-
+</div>
 
 @stop

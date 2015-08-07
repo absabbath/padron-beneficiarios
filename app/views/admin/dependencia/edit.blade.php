@@ -5,8 +5,9 @@
 @section('ruta')
 
  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-    <li class="active">Home</li>
+    <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Inicio</a></li>
+    <li><a href="{{url('admin/dependencia')}}"><i class="fa fa-users"></i> Dependencias</a></li>
+    <li class="active">Editanto {{$dependencia->nombre_dependencia}}</li>
 </ol>
 
 @stop
@@ -23,8 +24,8 @@
         </div>
 @endif
 
-
-
+<div class="col-md-4"></div>
+<div class="col-md-4">
 {{ Form::model($dependencia, array('route' => array('admin.dependencia.update', $dependencia->id), 'method' => 'PUT'), array('role' => 'form')) }}
 
 		{{ Form::label('nombre_dependencia', 'Dependencia',array('class'=>'control-label')) }}
@@ -43,10 +44,8 @@
 
 		<center> {{ Form::button('Guardar Cambios', array('type' => 'submit', 'class' => 'btn btn-success')) }}</center>
         
-   		
-
 	{{ Form::close() }}
-
+</div>
 
 
 @stop

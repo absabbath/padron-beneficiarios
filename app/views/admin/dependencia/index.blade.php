@@ -5,8 +5,8 @@
 @section('ruta')
 
  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-    <li class="active">Home</li>
+    <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+    <li class="active">Usuarios</li>
 </ol>
 
 @stop
@@ -21,17 +21,15 @@
 	<td bgcolor='#DCDCDC'>NOMBRE DIRECTOR</td>
 	<td bgcolor='#DCDCDC'>PRIMER APELLIDO</td>
 	<td bgcolor='#DCDCDC'>SEGUNDO APELLIDO</td>
-	<td bgcolor='#DCDCDC'>EDITAR</td>
 </tr>
 @foreach($dependencias as $dependencia)
 <tr>
 
-	<td>{{$dependencia->nombre_dependencia}}</td>
+	<td><a href="{{ route('admin.dependencia.edit', $dependencia->id) }}">{{$dependencia->nombre_dependencia}}</a></td>
 	<td>{{$dependencia->nombre_director}}</td>
 	<td>{{$dependencia->primer_apellido}}</td>
 	<td>{{$dependencia->segundo_apellido}}</td>
 
-	<td><a class="btn btn-success" href="{{ route('admin.dependencia.edit', $dependencia->id) }}">Editar</a></td>
 	
 </tr>
 
