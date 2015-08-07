@@ -7,7 +7,7 @@
  <ol class="breadcrumb">
     <li><a href=" {{URL::to('/')}}"><i class="fa fa-home"></i> Inicio</a></li>
     <li><a href="{{ URL::to('admin/usuario')}}"><i class="fa fa-user"></i> Usuarios</a></li>
-    <li class="active">Nuevo</li>
+    <li class="active">Editar usuario {{$usuario->login}}</li>
 </ol>
 
 @stop
