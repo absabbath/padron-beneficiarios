@@ -127,6 +127,10 @@ class AdminController extends BaseController {
     }
 
 
+    /**
+     * busquedaAdmin  Lleva a la vista para realizar busquedas
+     * @return View Plantilla de busquedas
+     */
     public function busquedaAdmin()
     {
         $dependencias = Dependencia::all()->lists('nombre_dependencia', 'id');
@@ -135,42 +139,70 @@ class AdminController extends BaseController {
                 ->with('combo', $dependencias);
     }
 
+    /**
+     * reporte Realiza la busqueda de acuerdo al valor retornado
+     * @param  string $tipo Tipo de busqueda
+     * @return View       Vista de resultados
+     */
     public function reporte($tipo)
     {   
         $aux = null;
         $dependencias = Dependencia::all()->lists('nombre_dependencia', 'id');
+        $consulta = "";
 
         switch ($tipo) {
 
             case 'seccion':
+
                 $seccion = Input::get('seccion');
-                $apoyos = Beneficiario::where('secc_electoral', $seccion)->get();
+                $personas = Beneficiario::where('secc_electoral', $seccion)->lists('id');
+                $consulta = "seccion electoral: ".$seccion;
+                $apoyos = Apoyo::whereIn('id_beneficiarios', $personas)->get();
+                $aux = $apoyos;
                 
                 break;
 
 
             case 'dependencia':
-                # code...
+
+                $id_dependencia = Input::get('dependencia');
+                $dependencia = Dependencia::find($id_dependencia);
+                $consulta = "dependencia: ".$dependencia->nombre_dependencia;
+                $programas = $dependencia->programas()->get();
+
+                $subprogramas = [];
+                foreach ($programas as $programa) {
+                    $sub_aux = $programa->subprogramas()->get();
+                    foreach ($sub_aux as  $sub) {
+                        $subprogramas []= $sub->id;
+                    }
+                }
+           
+                $apoyos = Apoyo::whereIn('id_subprogramas', $subprogramas)->get();
+                $aux = $apoyos;
+
                 break;
 
 
             case 'fecha':
+
                 $inicio = Input::get('inicio');
                 $fin = Input::get('fin');
+                $consulta = "fecha: De ".$inicio." a ".$fin;
                 $apoyos = Apoyo::where('fecha','>=',$inicio )->where('fecha', '<=', $fin)->get();
                 $aux = $apoyos;
+
                 break;
             
             default:
-                # code...
+                return "No existe esa busqueda";
                 break;
         }
 
-        //return $aux;
-
         return View::make('admin/reportes/resultados')
                     ->with('apoyos',$aux)
-                    ->with('combo', $dependencias);
+                    ->with('combo', $dependencias)
+                    ->with('msj', 'Consulta por '.$consulta);
         
     }
 

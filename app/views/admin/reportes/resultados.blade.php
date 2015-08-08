@@ -14,6 +14,7 @@ $instancia = new Apoyo();
 @stop
 
 @section('reporte','')
+<span class="label label-primary" ><small> {{$msj}} </small></span>
 
 <table class="table table-reponsive">
   <tr>
