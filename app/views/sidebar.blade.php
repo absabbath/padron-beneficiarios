@@ -45,7 +45,7 @@
                     <li><a href="{{url('dependencia/beneficiarios')}}"> <i class="fa  fa-bar-chart"></i> Mis beneficiarios</a></li>
                 </ul>
             </li>
-
+            @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('root'))
             <li class="treeview">
                 <a href="#" class="fa fa-eye"> <span> Admin</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -55,6 +55,7 @@
                     <li><a href="{{ url('admin')}}"><i class="fa  fa-cloud-upload"></i> Cargar padron</a></li>
                 </ul>
             </li>
+            @endif
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

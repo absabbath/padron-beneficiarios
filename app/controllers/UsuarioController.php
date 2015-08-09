@@ -7,6 +7,13 @@ class UsuarioController extends BaseController {
         $this->beforeFilter('auth', array());
 
         $this->beforeFilter('csrf', array( 'on' => 'post' ));
+        if (! Auth::user()->hasRole('Administrador') && ! Auth::user()->hasRole('root')) {
+
+            Auth::logout();
+
+            return Redirect::action('LoginController@anyLogout')
+              ->with('message_danger', 'No tienes permiso de entrar a esa seccion');
+        }
 
     }
 
