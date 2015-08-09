@@ -10,6 +10,18 @@ class BeneficiarioController extends BaseController {
 
     }
 
+    public function irNuevo()
+    {
+        return View::make('apoyos/nuevo-beneficiario');
+    }
+
+    public function guardarNuevo()
+    {
+        return "Vista de beneficiario";
+        //retornar a vista de beneficiriarios
+        //return View::make;
+    }
+
 
     /**
      * buscarBeneficiario Buscar por clave de elector

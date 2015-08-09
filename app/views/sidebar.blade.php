@@ -36,7 +36,7 @@
                 <a href="#" class="fa fa-users"> <span> Beneficiarios</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{url('buscador')}}"> <i class="fa fa-search"></i> Buscar</a></li>
-                    <li><a href="#"> <i class="fa fa-user-plus"></i> Nuevo</a></li>
+                    <li><a href="{{url('ir/nuevo')}}"> <i class="fa fa-user-plus"></i> Nuevo</a></li>
                 </ul>
             </li>
             <li class="treeview">

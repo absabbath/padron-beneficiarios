@@ -40,6 +40,10 @@ Route::get('reporte/{tipo}/beneficiario', array(
 
 
 //Rutas de beneficiarios
+
+Route::get('ir/nuevo', 'BeneficiarioController@irNuevo');
+Route::post('nuevo/beneficiario', 'BeneficiarioController@guardarNuevo');
+
 Route::match(array('GET', 'POST'),'buscar/{clave}/beneficiario',array(
     'as'   => 'buscar.beneficiario',
     'uses' => 'BeneficiarioController@buscarBeneficiario'
