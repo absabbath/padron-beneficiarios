@@ -59,7 +59,7 @@ $instancia = new Apoyo();
 @endforeach
 
 </table>
-
+{{ $apoyos->links() }}
 
 @stop
 

@@ -25,7 +25,7 @@ Route::get('admin', 'AdminController@inicio');
 Route::post('upload', 'AdminController@upload');
 Route::post('sincroniza', 'AdminController@sincroniza');
 Route::get('admin/reportes','AdminController@busquedaAdmin');
-Route::post('reporte/{tipo}/beneficiario', array(
+Route::get('reporte/{tipo}/beneficiario', array(
     'as'   => 'admin.reporte.beneficiario',
     'uses' => 'AdminController@reporte'
     ));

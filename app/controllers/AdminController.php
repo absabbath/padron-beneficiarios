@@ -157,8 +157,10 @@ class AdminController extends BaseController {
                 $seccion = Input::get('seccion');
                 $personas = Beneficiario::where('secc_electoral', $seccion)->lists('id');
                 $consulta = "seccion electoral: ".$seccion;
-                $apoyos = Apoyo::whereIn('id_beneficiarios', $personas)->get();
+                $apoyos = Apoyo::whereIn('id_beneficiarios', $personas)->paginate();
+                $query = array_except( Input::query(), Paginator::getPageName() );
                 $aux = $apoyos;
+                $aux->appends($query);
                 
                 break;
 
@@ -178,8 +180,10 @@ class AdminController extends BaseController {
                     }
                 }
            
-                $apoyos = Apoyo::whereIn('id_subprogramas', $subprogramas)->get();
+                $apoyos = Apoyo::whereIn('id_subprogramas', $subprogramas)->paginate();
+                $query = array_except( Input::query(), Paginator::getPageName() );
                 $aux = $apoyos;
+                $aux->appends($query);
 
                 break;
 
@@ -189,8 +193,10 @@ class AdminController extends BaseController {
                 $inicio = Input::get('inicio');
                 $fin = Input::get('fin');
                 $consulta = "fecha: De ".$inicio." a ".$fin;
-                $apoyos = Apoyo::where('fecha','>=',$inicio )->where('fecha', '<=', $fin)->get();
+                $apoyos = Apoyo::where('fecha','>=',$inicio )->where('fecha', '<=', $fin)->paginate();
+                $query = array_except( Input::query(), Paginator::getPageName() );
                 $aux = $apoyos;
+                $aux->appends($query);
 
                 break;
             

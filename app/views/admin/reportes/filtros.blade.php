@@ -22,7 +22,7 @@
 <div class="col-md-4">
   <h4>Por seccion</h4>
   
-  {{ Form::open(array('route' => array('admin.reporte.beneficiario', 'seccion'), 'method' => 'POST', 'class'=>'form-inline')) }}
+  {{ Form::open(array('route' => array('admin.reporte.beneficiario', 'seccion'), 'method' => 'GET', 'class'=>'form-inline')) }}
     <div class="input-group">
       <input type="text" class="form-control" name="seccion" placeholder="Introduzca la seccion electoral">
       <span class="input-group-btn">
@@ -34,7 +34,7 @@
 
   <div class="col-md-4">
   <h4>Por dependencia</h4>
-  {{ Form::open(array('route' => array('admin.reporte.beneficiario', 'dependencia'), 'method' => 'POST', 'class'=>'form-inline')) }}
+  {{ Form::open(array('route' => array('admin.reporte.beneficiario', 'dependencia'), 'method' => 'GET', 'class'=>'form-inline')) }}
     <div class="input-group">
       {{ Form::select('dependencia', $combo, null, ['class' => 'form-control']) }}
       <span class="input-group-btn">
@@ -45,7 +45,7 @@
   {{Form::close()}}
   <div class="col-md-4">
     <h4>Por fecha</h4>
-    {{ Form::open(array('route' => array('admin.reporte.beneficiario', 'fecha'), 'method' => 'POST', 'class'=>'form-inline')) }}
+    {{ Form::open(array('route' => array('admin.reporte.beneficiario', 'fecha'), 'method' => 'GET', 'class'=>'form-inline')) }}
     <form class="form-inline">
       <div class="form-group">
         <div class="input-group">
