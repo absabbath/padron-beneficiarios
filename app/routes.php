@@ -19,6 +19,8 @@ Route::post ('password/reset',  'RemindersController@postReset' );
 Route::any  ('/',  'HomeController@showWelcome'   );
 Route::resource('admin/usuario','UsuarioController');
 Route::resource('admin/dependencia','DependenciaController');
+Route::get('dependencia/beneficiarios', 'DependenciaController@getBeneficiarios');
+Route::get('exporta/beneficiarios', 'DependenciaController@exportaMisBeneficiarios');
 
 //Rutas del admin
 Route::get('admin', 'AdminController@inicio');

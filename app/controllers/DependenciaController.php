@@ -85,4 +85,65 @@ class DependenciaController extends BaseController {
         return $subprograma->lists('nombre_subprograma', 'id');
     }
 
+    public function getBeneficiarios()
+    {
+        $id_dependencia = Auth::user()->dependencia()->get()->first()->id;
+        $dependencia = Dependencia::find($id_dependencia);
+        $programas = $dependencia->programas()->get();
+
+        $subprogramas = [];
+        foreach ($programas as $programa) {
+            $sub_aux = $programa->subprogramas()->get();
+            foreach ($sub_aux as  $sub) {
+                $subprogramas []= $sub->id;
+            }
+        }
+           
+        $apoyos = Apoyo::whereIn('id_subprogramas', $subprogramas)->paginate();
+        $sesion= Apoyo::whereIn('id_subprogramas', $subprogramas)->get();
+        Session::put('exportar', $sesion);
+
+        return View::make('apoyos/consulta')->with('apoyos', $apoyos);
+    }
+
+    public function exportaMisBeneficiarios()
+    {
+        
+        Excel::create('Mis_Beneficiarios', function($excel) {
+            
+        $excel->sheet('Padron_Beneficiarios', function($sheet) {
+            $data = Session::get('exportar');
+            $headers = ['Clave elector', 'Nombre beneficiario', 'Primer apellido', 'Segundo apellido', 
+                    'Edad', 'Calle', 'Colonia',
+                    'Número', 'Fecha', 'Tipo apoyo', 'Descripción apoyo', 'Monto'];
+            $todo =[$headers];
+
+            foreach ($data as $apoyo) { 
+
+                $row = [
+                    $apoyo->beneficiario()->first()->clave_electoral,
+                    $apoyo->beneficiario()->first()->nombre_beneficiario,
+                    $apoyo->beneficiario()->first()->primer_apellido_beneficiario,
+                    $apoyo->beneficiario()->first()->segundo_apellido_beneficiario,
+                    $apoyo->beneficiario()->first()->edad,
+                    $apoyo->beneficiario()->first()->calle,
+                    $apoyo->beneficiario()->first()->colonia,
+                    $apoyo->beneficiario()->first()->num_ext,
+                    $apoyo->fecha,
+                    $apoyo->buscarTipo($apoyo->id_tipo_apoyos),
+                    $apoyo->concepto,
+                    $apoyo->monto
+                    ];
+                $todo []=$row;
+            }
+
+            $sheet->freezeFirstRow();
+
+            $sheet->fromArray($todo, null, 'A1', false, false);
+            
+         });
+
+      })->export('xlsx');
+    }
+
 }
