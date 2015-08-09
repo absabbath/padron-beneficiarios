@@ -32,11 +32,17 @@
             <li class="header">Acciones</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('/')}}" class="fa fa-home"><span>Inicio</span></a></li>
-            <li><a href="{{ url('buscador')}}" class="fa fa-user-plus"> <span> Beneficiario</span></a></li>
+            <li class="treeview">
+                <a href="#" class="fa fa-users"> <span> Beneficiarios</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('buscador')}}"> <i class="fa fa-search"></i> Buscar</a></li>
+                    <li><a href="#"> <i class="fa fa-user-plus"></i> Nuevo</a></li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="#" class="fa fa-table"> <span> Reportes</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('dependencia/beneficiarios')}}">Mis beneficiarios</a></li>
+                    <li><a href="{{url('dependencia/beneficiarios')}}"> <i class="fa  fa-bar-chart"></i> Mis beneficiarios</a></li>
                 </ul>
             </li>
 

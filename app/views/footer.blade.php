@@ -2,8 +2,8 @@
 <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-        Anything you want
+        <a href="#">#Labsol</a>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright © 2015 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright © 2015 <a href="#">{{getenv('AYUNTAMIENTO')}}</a>.</strong>
 </footer>
