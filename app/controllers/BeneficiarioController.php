@@ -59,6 +59,10 @@ class BeneficiarioController extends BaseController {
 
     }
 
+    /**
+     * buscador envia a la vista de del buscador
+     * @return View Retorna a la vista correspondiente
+     */
     public function buscador()
     {
         return View::make('apoyos/buscador');
@@ -134,27 +138,43 @@ class BeneficiarioController extends BaseController {
         return $todo;
     }
 
+    /**
+     * getBeneficiarios Encuentra los apoyos otorgados por el usuario actual
+     * @return View Retorna los datos a la vista correspondientes
+     */
     public function getBeneficiarios()
     {
-        $id_dependencia = Auth::user()->dependencia()->get()->first()->id;
-        $dependencia = Dependencia::find($id_dependencia);
-        $programas = $dependencia->programas()->get();
+        if (! Auth::user()->hasRole('Administrador') && ! Auth::user()->hasRole('root')) {
+            
+            $id_dependencia = Auth::user()->dependencia()->get()->first()->id;
+            $dependencia = Dependencia::find($id_dependencia);
+            $programas = $dependencia->programas()->get();
 
-        $subprogramas = [];
-        foreach ($programas as $programa) {
-            $sub_aux = $programa->subprogramas()->get();
-            foreach ($sub_aux as  $sub) {
-                $subprogramas []= $sub->id;
+            $subprogramas = [];
+            foreach ($programas as $programa) {
+                $sub_aux = $programa->subprogramas()->get();
+                foreach ($sub_aux as  $sub) {
+                    $subprogramas []= $sub->id;
+                }
             }
-        }
-           
-        $apoyos = Apoyo::whereIn('id_subprogramas', $subprogramas)->paginate();
-        $sesion= Apoyo::whereIn('id_subprogramas', $subprogramas)->get();
-        Session::put('exportar', $sesion);
+               
+            $apoyos = Apoyo::whereIn('id_subprogramas', $subprogramas)->paginate();
+            $sesion= Apoyo::whereIn('id_subprogramas', $subprogramas)->get();
+            Session::put('exportar', $sesion);
 
-        return View::make('apoyos/consulta')->with('apoyos', $apoyos);
+            return View::make('apoyos/consulta')->with('apoyos', $apoyos);
+        } else {
+            $dependencias = Dependencia::all()->lists('nombre_dependencia', 'id');
+
+            return View::make('admin/reportes/filtros')
+                    ->with('combo', $dependencias);
+        }
     }
 
+    /**
+     * exportaMisBeneficiarios Funcion para exportar a hoja de calculo
+     * @return Reponse Descarga los datos en formato de hoja de calculo
+     */
     public function exportaMisBeneficiarios()
     {
         
@@ -195,6 +215,11 @@ class BeneficiarioController extends BaseController {
       })->export('xlsx');
     }
 
+    /**
+     * getSubPrograma obtiene los subprogramas de acuerdo al programa seleccionado
+     *                 envia por medio de JQuery
+     * @return array Respuesta jquery
+     */
     public function getSubPrograma()
     {
         $id = Input::get('programa');
