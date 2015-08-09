@@ -41,6 +41,59 @@ class AdminController extends BaseController {
 
     }
 
+    /**
+     * export Exporta la consulta en la que se este a documento de 
+     *         hoja de calculo
+     * @return Response Descarga el documento resultante
+     */
+    public function export()
+    {
+        
+        $name = Session::get('name');
+        
+        Excel::create($name, function($excel) {
+            
+        $excel->sheet('Padron_Beneficiarios', function($sheet) {
+            $data = Session::get('export');
+            $headers = ['Clave elector', 'Nombre beneficiario', 'Primer apellido', 'Segundo apellido', 
+                    'Edad', 'Sexo', 'Ocupación', 'Seccion electoral', 'Calle', 'Colonia',
+                    'Número', 'Dependencia', 'Fecha', 'Tipo apoyo', 'Descripción apoyo', 'Monto'];
+            $todo =[$headers];
+
+            foreach ($data as $apoyo) {
+
+                $row = [
+                    $apoyo->beneficiario()->first()->clave_electoral,
+                    $apoyo->beneficiario()->first()->nombre_beneficiario,
+                    $apoyo->beneficiario()->first()->primer_apellido_beneficiario,
+                    $apoyo->beneficiario()->first()->segundo_apellido_beneficiario,
+                    $apoyo->beneficiario()->first()->edad,
+                    $apoyo->beneficiario()->first()->sexo,
+                    $apoyo->beneficiario()->first()->ocupacion,
+                    $apoyo->beneficiario()->first()->secc_electoral,
+                    $apoyo->beneficiario()->first()->calle,
+                    $apoyo->beneficiario()->first()->colonia,
+                    $apoyo->beneficiario()->first()->num_ext,
+                    $apoyo->getDependencia($apoyo->id_subprogramas),
+                    $apoyo->fecha,
+                    $apoyo->buscarTipo($apoyo->id_tipo_apoyos),
+                    $apoyo->concepto,
+                    $apoyo->monto
+                    ];
+                $todo []=$row;
+            }
+
+            $sheet->freezeFirstRow();
+
+            $sheet->fromArray($todo, null, 'A1', false, false);
+            
+         });
+
+      })->export('xlsx');
+
+
+    }
+
 
     /**
      * getFiles Obtiene los nombre de archivos en el servidor
@@ -149,6 +202,7 @@ class AdminController extends BaseController {
         $aux = null;
         $dependencias = Dependencia::all()->lists('nombre_dependencia', 'id');
         $consulta = "";
+        $sesion =[];
 
         switch ($tipo) {
 
@@ -158,6 +212,7 @@ class AdminController extends BaseController {
                 $personas = Beneficiario::where('secc_electoral', $seccion)->lists('id');
                 $consulta = "seccion electoral: ".$seccion;
                 $apoyos = Apoyo::whereIn('id_beneficiarios', $personas)->paginate();
+                $sesion= Apoyo::whereIn('id_beneficiarios', $personas)->get();
                 $query = array_except( Input::query(), Paginator::getPageName() );
                 $aux = $apoyos;
                 $aux->appends($query);
@@ -181,6 +236,7 @@ class AdminController extends BaseController {
                 }
            
                 $apoyos = Apoyo::whereIn('id_subprogramas', $subprogramas)->paginate();
+                $sesion= Apoyo::whereIn('id_subprogramas', $subprogramas)->get();
                 $query = array_except( Input::query(), Paginator::getPageName() );
                 $aux = $apoyos;
                 $aux->appends($query);
@@ -194,6 +250,18 @@ class AdminController extends BaseController {
                 $fin = Input::get('fin');
                 $consulta = "fecha: De ".$inicio." a ".$fin;
                 $apoyos = Apoyo::where('fecha','>=',$inicio )->where('fecha', '<=', $fin)->paginate();
+                $sesion= Apoyo::where('fecha','>=',$inicio )->where('fecha', '<=', $fin)->get();
+                $query = array_except( Input::query(), Paginator::getPageName() );
+                $aux = $apoyos;
+                $aux->appends($query);
+
+                break;
+
+            case 'todos':
+
+                $apoyos = Apoyo::paginate();
+                $sesion = Apoyo::all();
+                $consulta = "todos";
                 $query = array_except( Input::query(), Paginator::getPageName() );
                 $aux = $apoyos;
                 $aux->appends($query);
@@ -204,6 +272,9 @@ class AdminController extends BaseController {
                 return "No existe esa busqueda";
                 break;
         }
+        
+        Session::put('export',$sesion);
+        Session::put('name', $consulta);
 
         return View::make('admin/reportes/resultados')
                     ->with('apoyos',$aux)

@@ -30,6 +30,18 @@
       </span>
     </div><!-- /input-group -->
   {{Form::close()}}
+<br>
+
+{{ Form::open(array('route' => array('admin.reporte.beneficiario', 'todos'), 'method' => 'GET', 'class'=>'form-inline')) }}
+    <div class="input-group">
+      <input type="text" class="form-control" disabled placeholder="Todos los apoyos">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+      </span>
+    </div><!-- /input-group -->
+  {{Form::close()}}
+
+
   </div><!-- /.col-lg-6 -->
 
   <div class="col-md-4">
@@ -43,6 +55,7 @@
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
   {{Form::close()}}
+
   <div class="col-md-4">
     <h4>Por fecha</h4>
     {{ Form::open(array('route' => array('admin.reporte.beneficiario', 'fecha'), 'method' => 'GET', 'class'=>'form-inline')) }}
