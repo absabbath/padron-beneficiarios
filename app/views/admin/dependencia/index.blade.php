@@ -14,8 +14,7 @@
 <br>
 
 	<center><a href="{{ URL::to('admin/dependencia/create') }}" class="btn btn-danger" type="button">Nueva Dependencia</a></center><br>
-<div class="col-md-4"></div>
-<div class="col-md-6">
+
 <table class="table table-condensed">
 <tr>
 	<td bgcolor='#DCDCDC' >NOMBRE DEPENDENCIA</td>
@@ -37,6 +36,5 @@
 @endforeach
 
 </table>
-</div>
 
 @stop
