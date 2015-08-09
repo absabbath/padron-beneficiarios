@@ -19,8 +19,8 @@ Route::post ('password/reset',  'RemindersController@postReset' );
 Route::any  ('/',  'HomeController@showWelcome'   );
 Route::resource('admin/usuario','UsuarioController');
 Route::resource('admin/dependencia','DependenciaController');
-Route::get('dependencia/beneficiarios', 'DependenciaController@getBeneficiarios');
-Route::get('exporta/beneficiarios', 'DependenciaController@exportaMisBeneficiarios');
+Route::get('dependencia/beneficiarios', 'BeneficiarioController@getBeneficiarios');
+Route::get('exporta/beneficiarios', 'BeneficiarioController@exportaMisBeneficiarios');
 
 //Rutas del admin
 Route::get('admin', 'AdminController@inicio');
@@ -54,7 +54,7 @@ Route::put('beneficiario/{id}/update', array(
 
 Route::post('asignar/apoyo', 'BeneficiarioController@asignarApoyo');
 //Consulta los subpogramas con jquery
-Route::get('dropdown','DependenciaController@getSubPrograma');
+Route::get('dropdown','BeneficiarioController@getSubPrograma');
 Route::get('detalle', 'BeneficiarioController@detalle');
 Route::post('similares', 'BeneficiarioController@buscaSimilares');
 

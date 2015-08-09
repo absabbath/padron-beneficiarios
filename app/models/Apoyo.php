@@ -61,8 +61,16 @@ class Apoyo extends Eloquent {
      */
     public function getProgramas($id_dependencia)
     {
-        $dependencia = Dependencia::find($id_dependencia);
-        $programas = $dependencia->programas()->get();
+        if ($id_dependencia == 0) {
+            $programas = Programa::all();
+
+        } else {
+
+            $dependencia = Dependencia::find($id_dependencia);
+            $programas = $dependencia->programas()->get();
+            
+        }
+
         $combo = [];
         $combo [0] = "Selecciona un programa";
 

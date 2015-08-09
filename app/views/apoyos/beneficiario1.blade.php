@@ -3,7 +3,15 @@
 <?php 
 $apoyoInstancia = new Apoyo();
 //Para saber los programas que debe mostrar de acuerdo a la dependencia logueada
+if (Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('root')) {
+
+  $idDependencia = 0;
+
+} else {
+
 $idDependencia = Auth::user()->dependencia()->get()->first()->id;
+
+}
 
 ?>
 
