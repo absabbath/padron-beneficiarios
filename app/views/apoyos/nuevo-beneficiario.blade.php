@@ -78,7 +78,7 @@
       {{ Form::label('ocupacion', 'Ocupación',array('class'=>'control-label')) }}
       {{ Form::text('ocupacion', null, array('placeholder' => 'Ocupacion', 'class' => 'form-control')) }} 
       <br>
-    <center>{{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }} <br></center>>
+    <center>{{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary')) }} <br></center>
   </div>
 
   <div class="col-md-4">
