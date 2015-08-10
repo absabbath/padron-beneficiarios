@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h1>{{ getenv('APP_NAME') }}</h1>
+                <h1 class="bg-warning">{{ getenv('APP_NAME') }}</h1>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
 <div class="container login">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
+            <div class="login-panel panel panel-danger">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         @yield('panel-title', '')

@@ -20,7 +20,7 @@ Bienvenido
                 </label>
             </div>
         </div>
-        {{ Form::submit('Ingresar', array('class'=>'btn btn-lg btn-info btn-block')) }}
+        {{ Form::submit('Ingresar', array('class'=>'btn btn-lg btn-danger btn-block')) }}
     </fieldset>
 {{ Form::close() }}
 @stop
