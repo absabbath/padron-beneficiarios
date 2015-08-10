@@ -1,26 +1,48 @@
 @extends('admin-layout')
+<?php
 
+    if ($beneficiario->exists):
+        $form_data = array('route' => array('nuevo.beneficiario.update', $beneficiario->id), 'method' => 'PUT');
+        $action    = 'Editar';
+    else:
+        $form_data = array('route' => 'beneficiario.store', 'method' => 'POST');
+        $action    = 'Crear';        
+    endif;
+
+?>
 @section('content')
 
 @section('ruta')
 
  <ol class="breadcrumb">
     <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Inicio</a></li>
-    <li class="active"><i class="fa fa-user"></i> Nuevo Beneficiario</li>
+    <li class="active"><i class="fa fa-user"></i> {{$action}} Beneficiario</li>
 </ol>
 
 @stop
 
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Por favor corrige los siguentes errores:</strong>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+@endif
+
+
   <center>
     <h3>
       <span class="label label-primary">
-        Nuevo beneficiario
+        {{$action}} beneficiario {{$beneficiario->id}}
       </span>
     </h3>
   </center>
 
-
-{{ Form::open(array('action' => 'BeneficiarioController@guardarNuevo', 'method' => 'POST','id' => 'formx'), array('role' => 'form','class'=>'form-horizontal row-fluid')) }}
+{{Form::model($beneficiario, $form_data, array('role' => 'form', 'class'=>'form-horizontal row-fluid'))}}
 <div class="col-md-4">
     {{ Form::label('clave_electoral', 'Clave de elector',array('class'=>'control-label')) }}
     {{ Form::text('clave_electoral', null, array('placeholder' => 'Clave de elector', 'class' => 'form-control')) }}

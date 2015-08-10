@@ -18,7 +18,7 @@ class CreateBeneficiarios extends Migration {
 			$table->string('nombre_beneficiario',128);
 			$table->string('primer_apellido_beneficiario',128);
 			$table->string('segundo_apellido_beneficiario',128)->nullable();
-			$table->integer('edad')->nullable();
+			$table->integer('edad')->nullable()->default(18);
 			$table->string('ocupacion',128)->nullable();
 			$table->string('sexo',2);
 			$table->string('clave_electoral',128)->nullable();

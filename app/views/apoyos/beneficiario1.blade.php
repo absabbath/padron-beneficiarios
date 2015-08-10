@@ -44,7 +44,7 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
       {{$persona->nombre_beneficiario }}
       {{$persona->primer_apellido_beneficiario }}
       {{$persona->segundo_apellido_beneficiario }}
-      <small>{{$persona->clave_electoral}}</small>
+      <small> <a href="{{ route('beneficiario.editar', $persona->id) }}" data-toggle="tooltip" data-placement="right" title="Editar información"> {{$persona->clave_electoral}} <i class="fa fa-edit"></i></a></small>
     </h3>
     <br>
     <h4>

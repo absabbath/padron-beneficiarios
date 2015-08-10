@@ -12,16 +12,79 @@ class BeneficiarioController extends BaseController {
 
     public function irNuevo()
     {
-        return View::make('apoyos/nuevo-beneficiario');
+        $beneficiario = new Beneficiario;
+        return View::make('apoyos/nuevo-beneficiario')->with('beneficiario', $beneficiario);
+    }
+
+    public function irEditar($id)
+    {
+        $beneficiario = Beneficiario::find($id);
+        return View::make('apoyos/nuevo-beneficiario')->with('beneficiario', $beneficiario);
+    }
+
+    public function updateNuevo($id)
+    {
+        $beneficiario = Beneficiario::find($id);
+        if (is_null($beneficiario)) App::abort(404);
+
+        $data = Input::all();
+        $data = array_map('strtoupper', $data);
+
+        if (!$beneficiario->validAndSave($data)) {
+            return Redirect::route('beneficiario.editar', $beneficiario->id)
+            ->withInput()
+            ->withErrors($beneficiario->errors);
+        }
+        return Redirect::route('buscar.beneficiario', [$beneficiario->clave_electoral]);
     }
 
     public function guardarNuevo()
     {
-        return "Vista de beneficiario";
-        //retornar a vista de beneficiriarios
-        //return View::make;
-    }
+        $cv_aux = Input::get('clave_electoral');
+        $edad_aux = Input::get('edad');
+        $cp_aux = Input::get('cp');
 
+        if (Input::get('edad') == "") {
+            $edad_aux = 18;
+        }
+
+        if (Input::get('cp') == "") {
+            $cp_aux = 0;
+        }
+
+        if (Input::get('clave_electoral') == "") {
+            $cv_aux = Beneficiario::count()+1;
+        }
+
+        $ben = new Beneficiario;
+        $data = Input::all();
+      //Si error regresa a la acción create con los datos y errores encontrados
+        if (!$ben->isValid($data)) {
+            return Redirect::route('nuevo.beneficiario.create')
+            ->withInput()
+            ->withErrors($ben->errors);
+        }
+
+        $nuevo = new Beneficiario([
+            'clave_electoral'               => strtoupper($cv_aux),
+            'nombre_beneficiario'           => strtoupper(Input::get('nombre_beneficiario')),
+            'primer_apellido_beneficiario'  => strtoupper(Input::get('primer_apellido_beneficiario')),
+            'segundo_apellido_beneficiario' => strtoupper(Input::get('segundo_apellido_beneficiario')),
+            'secc_electoral'                => strtoupper(Input::get('secc_electoral')),
+            'sexo'                          => strtoupper(Input::get('sexo')),
+            'edad'                          => $edad_aux,
+            'ocupacion'                     => strtoupper(Input::get('ocupacion')),
+            'calle'                         => strtoupper(Input::get('calle')),
+            'num_ext'                       => strtoupper(Input::get('num_ext')),
+            'num_int'                       => strtoupper(Input::get('num_int')),
+            'colonia'                       => strtoupper(Input::get('colonia')),
+            'cp'                            => $cp_aux,
+            ]);
+
+        $nuevo->save();
+        return Redirect::route('buscar.beneficiario', [$nuevo->clave_electoral]);
+
+    }
 
     /**
      * buscarBeneficiario Buscar por clave de elector

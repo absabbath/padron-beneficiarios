@@ -41,8 +41,26 @@ Route::get('reporte/{tipo}/beneficiario', array(
 
 //Rutas de beneficiarios
 
-Route::get('ir/nuevo', 'BeneficiarioController@irNuevo');
-Route::post('nuevo/beneficiario', 'BeneficiarioController@guardarNuevo');
+
+Route::get('ir/nuevo', array(
+    'as'   => 'nuevo.beneficiario.create',
+    'uses' => 'BeneficiarioController@irNuevo'
+    ));
+
+Route::get('ir/editar/{id}/beneficiario', array(
+    'as'   => 'beneficiario.editar',
+    'uses' => 'BeneficiarioController@irEditar'
+    ));
+
+Route::post('nuevo/beneficiario', array(
+    'as'   => 'beneficiario.store',
+    'uses' => 'BeneficiarioController@guardarNuevo'
+    ));
+
+Route::put('nuevo/beneficiario/{id}/update', array(
+    'as'   => 'nuevo.beneficiario.update',
+    'uses' => 'BeneficiarioController@updateNuevo'
+    ));
 
 Route::match(array('GET', 'POST'),'buscar/{clave}/beneficiario',array(
     'as'   => 'buscar.beneficiario',

@@ -44,10 +44,17 @@ class Beneficiario extends Eloquent {
     public function isValid($data)
     {
         $rules = array(
-            'nombre_beneficiario'  => 'required',
-            'primer_apellido_beneficiario'    => 'required',
-        );
+            'nombre_beneficiario'  => 'required|max:30|regex:[^[a-zA-Zzáéíóúñ[:space:]]*$]',
+            'primer_apellido_beneficiario'    => 'required|max:30|regex:[^[a-zA-Zzáéíóúñ[:space:]]*$]',
+            'segundo_apellido_beneficiario' => 'max:30|regex:[^[a-zA-Zzáéíóúñ[:space:]]*$]',
+            'calle' => 'required',
+            'colonia' => 'required',
+            'secc_electoral' => 'regex:/^[0-9]*$/',
+            'edad' => 'regex:/^[0-9]*$/',
+            'cp' => 'regex:/^[0-9]*$/',
 
+
+        );
 
         $validator = Validator::make($data, $rules);
 
