@@ -44,6 +44,7 @@ class Beneficiario extends Eloquent {
     public function isValid($data)
     {
         $rules = array(
+            'clave_electoral' => 'unique:beneficiarios',
             'nombre_beneficiario'  => 'required|max:30|regex:[^[a-zA-Zzáéíóúñ[:space:]]*$]',
             'primer_apellido_beneficiario'    => 'required|max:30|regex:[^[a-zA-Zzáéíóúñ[:space:]]*$]',
             'segundo_apellido_beneficiario' => 'max:30|regex:[^[a-zA-Zzáéíóúñ[:space:]]*$]',
@@ -55,6 +56,11 @@ class Beneficiario extends Eloquent {
 
 
         );
+
+        if ($this->exists) {
+  
+            $rules['clave_electoral'] .= ',clave_electoral,' . $this->id;
+        }
 
         $validator = Validator::make($data, $rules);
 
