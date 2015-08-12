@@ -24,8 +24,11 @@ class RemindersController extends Controller {
             $this->users
                 ->where('login','=',$usuario_login)
                 ->take(1)
-                ->get()
-                ;
+                ->get();
+             
+        if ($tmp == "[]") {
+            return Redirect::back()->with('message_danger', '¡No exite el usuario!');
+        }
 
         $usuario_email = $tmp[0]->email;
 
