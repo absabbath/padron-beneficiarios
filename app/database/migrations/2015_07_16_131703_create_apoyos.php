@@ -15,7 +15,7 @@ class CreateApoyos extends Migration {
 		Schema::create('apoyos', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->float('monto');
+			$table->double('monto',7,4);
 			$table->dateTime('fecha');
 			$table->string('concepto', 1024);
 			$table->enum('periodicidad', array('Un solo pago','Quincenal', 'Mensual','Bimestral,','Semestral','Anual','Otro'));

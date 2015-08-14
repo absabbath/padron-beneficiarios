@@ -167,9 +167,15 @@ class BeneficiarioController extends BaseController {
      */
     public function asignarApoyo()
     {
+        $apoyo = new Apoyo();
+        $data = Input::all();
+
+        if (!$apoyo->isValid($data)) {
+            return Redirect::back()->withErrors($apoyo->errors);
+        }
         $apoyo = new Apoyo(array(
         'monto' => Input::get('monto'),
-        'fecha' => Input::get('inicio'),
+        'fecha' => Input::get('fecha'),
         'concepto' => Input::get('concepto'),
         'periodicidad' => Input::get('periodicidad'),
         'id_tipo_apoyos' => Input::get('tipo'),

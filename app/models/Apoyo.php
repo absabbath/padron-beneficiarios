@@ -100,6 +100,9 @@ class Apoyo extends Eloquent {
     {
         $rules = array(
             'fecha'  => 'required',
+            'id_subprogramas' => 'required',
+            'monto'  => 'required|numeric|max:999999',
+            'concepto' => 'required',
         );
 
 

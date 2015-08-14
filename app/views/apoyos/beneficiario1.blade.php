@@ -28,6 +28,18 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
 
 @stop
 
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Por favor corrige los siguentes errores:</strong>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+@endif
+
 <div class="row">
 <!-- Modulo donde se muestran los datos del beneficiario y  se agregan los faltantes-->
 <div class="col-md-6">
@@ -155,16 +167,16 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
           {{ Form::select('tipo', $apoyoInstancia->getTipo(), null, ['class' => 'form-control']) }}
 
           {{ Form::label('fecha', 'Fecha',array('class'=>'control-label')) }}
-          <input type="date" name="inicio" class="form-control" id="inicio" required max="<?php echo date('Y-m-d');?>" placeholder="YYYY/MM/DD">
+          <input type="date" name="fecha" class="form-control" id="fecha" required max="<?php echo date('Y-m-d');?>" placeholder="YYYY/MM/DD">
 
           {{ Form::label('monto', 'Monto',array('class'=>'control-label')) }}
-          {{ Form::text('monto', 0, array('placeholder' => 'Monto', 'class' => 'form-control')) }}
+          {{ Form::text('monto', 0, array('placeholder' => 'Monto', 'class' => 'form-control','required' => 'true')) }}
           
           {{ Form::label('periodicidad', 'Periodicidad',array('class'=>'control-label')) }}
           {{ Form::select('periodicidad', array('Un solo pago' => 'Un solo pago', 'Quincenal' => 'Quincenal', 'Anual' => 'Anual', 'Mensual' => 'Mensual', 'Bimestral' => 'Bimestral', 'Semestral' => 'Semestral', 'Otro' => 'Otro'), null, ['class' => 'form-control']) }}
 
-          {{ Form::label('concepto', 'Descripcion del apoyo',array('class'=>'control-label')) }}
-          {{ Form::textarea('concepto','Descripcion',array('class' => 'form-control', 'rows'=>'3')) }}
+          {{ Form::label('concepto', 'Descripción o concepto',array('class'=>'control-label')) }}
+          {{ Form::textarea('concepto','Descripción o concepto',array('class' => 'form-control', 'rows'=>'3','required' => 'true')) }}
 
       </div>
       <div class="modal-footer">
