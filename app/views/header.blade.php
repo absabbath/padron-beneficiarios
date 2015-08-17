@@ -31,7 +31,11 @@
                             <img src="{{ asset("/assets/img/default.png") }}" class="img-circle" alt="User Image" />
                             <p>
                                 {{Auth::user()->nombre}}
+                                @if(Auth::user()->dependencia()->first() == null)
+                                    <small>Administrador</small>
+                                @else
                                 <small>{{strtoupper(Auth::user()->dependencia()->first()->nombre_dependencia)}}</small>
+                                @endif
                             </p>
                         </li>
                         <!-- Menu Body -->
