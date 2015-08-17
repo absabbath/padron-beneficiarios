@@ -10,12 +10,9 @@ Restablecer password
         <div class="form-group">
             {{ Form::text('usuario', null, array('class'=>'form-control', 'placeholder'=>'Usuario')) }}
         </div>
-        {{ Form::submit('Restablecer password', array('class'=>'btn btn-lg btn-info btn-block'))}}
+        {{ Form::submit('Restablecer password', array('class'=>'btn btn-lg btn-danger btn-block'))}}
     </fieldset>
 {{ Form::close() }}
-@stop
-
-@section('footer')
 <footer>
     <div class="row">
         <div class="col-lg-12">

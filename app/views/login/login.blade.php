@@ -23,9 +23,6 @@ Bienvenido
         {{ Form::submit('Ingresar', array('class'=>'btn btn-lg btn-danger btn-block')) }}
     </fieldset>
 {{ Form::close() }}
-@stop
-
-@section('footer')
 <footer>
     <div class="row">
         <div class="col-lg-12">
@@ -34,3 +31,4 @@ Bienvenido
     </div>
 </footer>
 @stop
+

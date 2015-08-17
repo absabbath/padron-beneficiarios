@@ -22,6 +22,10 @@
     <p class="bg-danger">Control de dependencias</p>
     <p class="bg-warning">Control de programas</p>
 	<br>
+
+  <div align="right">
+    <img src="/assets/img/logo.jpg">
+  </div>
   </div>
 </div>
 

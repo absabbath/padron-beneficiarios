@@ -17,12 +17,10 @@ Restablecer password
             {{ Form::password('password_confirmation', array('class'=>'form-control', 'placeholder'=>'Password')) }}
         </div>
         {{ Form::hidden('token', $token) }}
-        {{ Form::submit('Restablecer password', array('class'=>'btn btn-lg btn-info btn-block'))}}
+        {{ Form::submit('Restablecer password', array('class'=>'btn btn-lg btn-danger btn-block'))}}
     </fieldset>
 {{ Form::close() }}
-@stop
 
-@section('footer')
 <footer>
     <div class="row">
         <div class="col-lg-12">
@@ -30,4 +28,5 @@ Restablecer password
         </div>
     </div>
 </footer>
+
 @stop

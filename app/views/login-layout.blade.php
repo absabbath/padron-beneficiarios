@@ -13,9 +13,19 @@
 @stop
 
 @section('content')
-<div class="container login">
+<div class="container">
+
+
     <div class="row">
+
+        <div class="col-md-2">
+            <div align="left">
+                <img src="/assets/img/logo.jpg">
+            </div>
+        </div>
+
         <div class="col-md-4 col-md-offset-4">
+            
             <div class="login-panel panel panel-danger">
                 <div class="panel-heading">
                     <h3 class="panel-title">
