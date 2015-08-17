@@ -31,7 +31,7 @@
                             <img src="{{ asset("/assets/img/default.png") }}" class="img-circle" alt="User Image" />
                             <p>
                                 {{Auth::user()->nombre}}
-                                <small>{{$dependencia = "Direccion Gral"}}</small>
+                                <small>{{strtoupper(Auth::user()->dependencia()->first()->nombre_dependencia)}}</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
