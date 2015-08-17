@@ -161,7 +161,7 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
           {{ Form::select('programa', $apoyoInstancia->getProgramas($idDependencia), null, ['class' => 'form-control', 'id' => 'programa']) }}
 
           {{ Form::label('subprogramas', 'Subprograma',array('class'=>'control-label')) }}
-          {{ Form::select('subprogramas', ['0'=>'Selecciona un programa primero'], null, ['class' => 'form-control','id' => 'subprograma']) }}
+          {{ Form::select('id_subprogramas', [''=>'Selecciona un programa primero'], null, ['class' => 'form-control','id' => 'subprograma']) }}
 
           {{ Form::label('tipo', 'Tipo de apoyo',array('class'=>'control-label')) }}
           {{ Form::select('tipo', $apoyoInstancia->getTipo(), null, ['class' => 'form-control']) }}

@@ -180,7 +180,7 @@ class BeneficiarioController extends BaseController {
         'periodicidad' => Input::get('periodicidad'),
         'id_tipo_apoyos' => Input::get('tipo'),
         'id_beneficiarios' => Input::get('id_beneficiario'),
-        'id_subprogramas' => Input::get('subprogramas'),
+        'id_subprogramas' => Input::get('id_subprogramas'),
         ));
         $apoyo->save();
 
