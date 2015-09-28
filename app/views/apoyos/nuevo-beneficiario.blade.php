@@ -56,10 +56,7 @@
     {{ Form::label('segundo_apellido_beneficiario', 'Segundo apellido',array('class'=>'control-label')) }}
 
     {{ Form::text('segundo_apellido_beneficiario', null, array('placeholder' => 'Segundo apellido', 'class' => 'form-control')) }}
-    
-    {{ Form::label('validar', '*CURP OBLIGATORIA PARA VALIDAR EXISTENCIA',array('class'=>'control-label')) }}
-
-    <!--input type="text" name ="curp" id="curp" placeholder="Ingrese la curp" class="form-control" required/ -->
+        
 
 
   </div>
@@ -108,35 +105,4 @@
 
 
 
-@stop
-
-@section('scripts', '')
-
-  <script type="text/javascript">
-//Para usar la validacio de curp solo 
-//, 'onclick' => 'validar()' despues de clase,
-//descomentar el input de la curp
-//y cmbiar el tipo a submit
-  function validar () {
-
-    var RegExPattern = "[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}" +
-    "(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])" +
-    "[HM]{1}" +
-    "(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)" +
-    "[B-DF-HJ-NP-TV-Z]{3}" +
-    "[0-9A-Z]{1}[0-9]{1}$";
-
-    var campo = document.getElementById('curp').value.toUpperCase();
-    
-
-    if ((campo.match(RegExPattern))) {
-
-        document.getElementById("formx").submit();
-
-    } else {
-        alert('La CURP ingresada no es valida!');
-        
-    } 
-  }
-  </script>
 @stop
