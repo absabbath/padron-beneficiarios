@@ -209,6 +209,8 @@ class BeneficiarioController extends BaseController {
 
         $todo = [
         'Tipo de apoyo' => $obj->buscarTipo($apoyo->id_tipo_apoyos),
+        'Programa' => $programa->nombre_programa,
+        'Subprograma' => Subprograma::find($apoyo->id_subprogramas)->nombre_subprograma,
         'Concepto' => $apoyo->concepto,
         'Monto $' => $apoyo->monto,
         'Fecha otorgado' => $apoyo->fecha,
