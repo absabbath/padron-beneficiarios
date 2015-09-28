@@ -55,7 +55,7 @@
                     </div>
 
                     @yield('panel-body', '')
-                    <img src="/assets/img/logo-upla.png">
+                    
                 </div>
 
             </div>
