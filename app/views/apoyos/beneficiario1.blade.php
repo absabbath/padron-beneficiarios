@@ -113,12 +113,12 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
     </div>
   </div>
   <div class="box-body">
-
+  @if(!Auth::user()->hasRole('Administrador'))
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
     Nuevo
   </button>
-
+  @endif
   <table class="table table-responsive table-condensed">
       <tr>
         <th>Tipo apoyo</th>
