@@ -18,6 +18,7 @@
   <div class="panel panel-info">
     <div class="panel-heading">{{$persona->nombre_beneficiario. " ".$persona->primer_apellido_beneficiario." ".$persona->segundo_apellido_beneficiario}}</div>
       <div class="panel-body">
+      <h4>Numero de apoyos: <span class="badge">{{$persona->apoyos->count()}}</span></h4>
         <h3>Domicilio</h3>
         <p> Clave electoral: <b>{{$persona->clave_electoral}} </b></p>
         <p> Calle: <b>{{$persona->calle}}</b> </p>
