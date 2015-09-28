@@ -55,7 +55,8 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
     <h3>
       {{$persona->nombre_beneficiario }}
       {{$persona->primer_apellido_beneficiario }}
-      {{$persona->segundo_apellido_beneficiario }}
+      {{$persona->segundo_apellido_beneficiario }}<br>
+      <span class="label label-default">{{$persona->id}}</span>
       <small> <a href="{{ route('beneficiario.editar', $persona->id) }}" data-toggle="tooltip" data-placement="right" title="Editar información"> {{$persona->clave_electoral}} <i class="fa fa-edit"></i></a></small>
     </h3>
     <br>
@@ -167,7 +168,7 @@ $idDependencia = Auth::user()->dependencia()->get()->first()->id;
           {{ Form::select('tipo', $apoyoInstancia->getTipo(), null, ['class' => 'form-control']) }}
 
           {{ Form::label('fecha', 'Fecha',array('class'=>'control-label')) }}
-          <input type="date" name="fecha" class="form-control" id="fecha" required max="<?php echo date('Y-m-d');?>" placeholder="YYYY/MM/DD">
+          <input type="date" name="fecha" class="form-control" id="fecha" required max="<?php echo date('Y-m-d');?>" placeholder="DD/MM/YYYY">
 
           {{ Form::label('monto', 'Monto',array('class'=>'control-label')) }}
           {{ Form::text('monto', 0, array('placeholder' => 'Monto', 'class' => 'form-control','required' => 'true')) }}
