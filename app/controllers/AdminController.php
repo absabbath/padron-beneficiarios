@@ -210,6 +210,7 @@ class AdminController extends BaseController {
         $dependencias = Dependencia::all()->lists('nombre_dependencia', 'id');
         $consulta = "";
         $sesion =[];
+        $contador = 0;
 
         switch ($tipo) {
 
@@ -232,17 +233,10 @@ class AdminController extends BaseController {
                 $id_dependencia = Input::get('dependencia');
                 $dependencia = Dependencia::find($id_dependencia);
                 $consulta = "dependencia: ".$dependencia->nombre_dependencia;
-                $programas = $dependencia->programas()->get();
-
-                $subprogramas = [];
-                foreach ($programas as $programa) {
-                    $sub_aux = $programa->subprogramas()->get();
-                    foreach ($sub_aux as  $sub) {
-                        $subprogramas []= $sub->id;
-                    }
-                }
+                $subprogramas = $this->showSubprogramas($dependencia);
            
                 $apoyos = Apoyo::whereIn('id_subprogramas', $subprogramas)->paginate();
+                $contador = Apoyo::whereIn('id_subprogramas', $subprogramas)->count();
                 $sesion= Apoyo::whereIn('id_subprogramas', $subprogramas)->get();
                 $query = array_except( Input::query(), Paginator::getPageName() );
                 $aux = $apoyos;
@@ -285,9 +279,41 @@ class AdminController extends BaseController {
 
         return View::make('admin/reportes/resultados')
                     ->with('apoyos',$aux)
+                    ->with('contador',$contador)
                     ->with('combo', $dependencias)
                     ->with('msj', 'Consulta por '.$consulta);
         
+    }
+
+    public function showSubprogramas($dependencia)
+    {
+        
+        $programas = $dependencia->programas()->get();
+
+        $subprogramas = [];
+        foreach ($programas as $programa) {
+            $sub_aux = $programa->subprogramas()->get();
+            foreach ($sub_aux as  $sub) {
+                $subprogramas []= $sub->id;
+            }
+        }
+
+        return $subprogramas;
+    }
+
+    public function showAvance()
+    {
+        $dependencias = Dependencia::all();
+        $reporte = [];
+        foreach ($dependencias as $dependencia) {
+
+            $subprogramas = $this->showSubprogramas($dependencia);
+            $contador = Apoyo::whereIn('id_subprogramas', $subprogramas)->count();
+            $reporte[]=['Contador' => $contador, 'Dependencia'  => $dependencia->nombre_dependencia];
+        }       
+
+        return View::make('admin/reportes/reporte')->with('reporte', $reporte);
+    
     }
 
 }

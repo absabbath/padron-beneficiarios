@@ -27,6 +27,7 @@ Route::get('admin', 'AdminController@inicio');
 Route::post('upload', 'AdminController@upload');
 Route::post('sincroniza', 'AdminController@sincroniza');
 Route::get('admin/reportes','AdminController@busquedaAdmin');
+Route::get('admin/reporte/dependencias','AdminController@showAvance');
 
 Route::get('admin/reporte/export', array(
     'as'   => 'admin.reporte.export',

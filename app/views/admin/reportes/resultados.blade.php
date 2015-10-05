@@ -15,13 +15,15 @@ $instancia = new Apoyo();
 
 @section('reporte','')
 
-<span class="label label-primary" >
-    <small> {{$msj}} </small>
-</span> 
+
+    <h4><span class="label label-primary" > {{$contador}} : {{$msj}} </span> </h4>
+
 
 <small>
     <a href="{{url('admin/reporte/export')}}">Exportar <i class="fa fa-download"></i></a>
 </small>
+
+<h3></h3>
 
 <table class="table table-reponsive">
   <tr>

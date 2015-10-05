@@ -14,7 +14,7 @@ class Apoyo extends Eloquent {
 
     public $errors;
     protected $table = 'apoyos';
-    protected $perPage = 2;
+    protected $perPage = 25;
 
 
     /**
