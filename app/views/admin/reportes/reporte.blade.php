@@ -11,7 +11,7 @@
 
 @stop
 
-<table class="table table-striped">
+<table class="table table-striped table-condensed">
 	<tr>
 		<th>Dependecia</th>
 		<th>Apoyos otorgados</th>

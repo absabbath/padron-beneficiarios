@@ -51,6 +51,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ url('admin/usuario')}}"> <i class="fa fa-user-plus"></i>  Gestión de usuarios</a></li>
                     <li><a href="{{ url('admin/dependencia')}}"> <i class="fa fa-users"></i> Gestión de dependencias</a></li>
+                    <li><a href="{{ url('admin/reporte/dependencias')}}"><i class="fa fa-book"></i>Apoyos cargados</a></li>
                     <li><a href="{{ url('admin/reportes')}}"><i class="fa fa-server"></i> Consultas</a></li>
                     <li><a href="{{ url('admin')}}"><i class="fa  fa-cloud-upload"></i> Cargar padron</a></li>
                 </ul>
